@@ -5,6 +5,11 @@ import CompanySection from "@/components/CompanySection";
 import ContactSection from "@/components/ContactSection";
 import HeroSection from "@/components/HeroSection";
 
+export const metadata = {
+  title: "Home | Interior Design Portfolio",
+  description: "Discover beautiful interior design solutions for your home",
+};
+
 export default function Home() {
   return (
     <>

@@ -1,6 +1,9 @@
 import Image from "next/image";
 
-
+export const metadata = {
+    title: "Our Projects | Interior Design Portfolio",
+    description: "Explore our interior design projects and see our work",
+};
 
 export default function Projects() {
     const projects = [
@@ -35,9 +38,15 @@ export default function Projects() {
                 {projects.map((project) => (
                     <div key={project.id} className="relative overflow-hidden rounded-xl group">
                         <div>
-                            <Image src={project.image} width={480} height={380} alt="" className="w-full" />
+                            <Image
+                                src={project.image}
+                                width={480}
+                                height={380}
+                                alt={project.name}
+                                className="w-full object-cover aspect-video"
+                            />
                         </div>
-                        <div className="absolute bottom-0 flex-col items-center justify-end w-full gap-32 p-12 text-xl text-white transition duration-300 ease-in-out translate-y-full bg-gradient-to-b from-transparent to-black group-hover:translate-y-0">
+                        <div className="absolute bottom-0 flex-col items-center justify-end w-full gap-32 p-12 text-xl text-white transition-transform duration-300 ease-in-out translate-y-full bg-gradient-to-b from-transparent to-black group-hover:translate-y-0">
                             <h1 className="text-2xl font-semibold">{project.name}</h1>
                             <p className="py-4 ">{project.description}</p>
                         </div>

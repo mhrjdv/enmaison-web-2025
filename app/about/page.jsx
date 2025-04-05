@@ -1,5 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { TbArrowUpRight } from "react-icons/tb"
+
+export const metadata = {
+    title: "About Us | Interior Design Portfolio",
+    description: "Learn about our interior design company and our experienced team",
+};
+
 export default function About() {
     return (
         <div>
@@ -16,7 +23,7 @@ export default function About() {
                 </div>
                 <div className="items-center lg:flex gap-x-8">
                     <div className="w-full">
-                        <Image src="/image/gallery1123.jpg" width={700} height={700} alt="" className="" />
+                        <Image src="/image/gallery1123.jpg" width={700} height={700} alt="Interior design gallery showcase" className="rounded-md" />
                     </div>
                     <div className="">
                         <p className="pb-8 tracking-wide">
@@ -29,7 +36,7 @@ export default function About() {
                             <br />
                             <span className="text-xl font-extrabold tracking-tight">The backpiperARCH, we share a belief in the transformational power of people united in a common purpose.</span>
                         </p>
-                        <a className="inline-flex items-center gap-1 px-6 py-3 text-sm text-white rounded-full shadow-lg bg-gray-950 hover:bg-gray-800 hover:ring-2 hover:ring-gray-950 ring-offset-2" href="">Read More <TbArrowUpRight className="text-xl" /> </a>
+                        <Link href="/projects" className="inline-flex items-center gap-1 px-6 py-3 text-sm text-white rounded-full shadow-lg bg-gray-950 hover:bg-gray-800 hover:ring-2 hover:ring-gray-950 ring-offset-2">Read More <TbArrowUpRight className="size-5" /> </Link>
 
 
                     </div>
@@ -41,7 +48,7 @@ export default function About() {
                     <div className="grid gap-20 py-8 lg:grid-cols-3">
                         <div className="border-2 border-gray-500 ">
                             <div className="-m-0.5 p-4 text-center transition hover:-translate-y-3 hover:-translate-x-3 aspect-square bg-zinc-100 ">
-                                <Image src="/image/profile2.jpg" width={200} height={200} alt="" className="mx-auto rounded-full " />
+                                <Image src="/image/profile2.jpg" width={200} height={200} alt="Team member profile" className="mx-auto rounded-full aspect-square object-cover" />
                                 <h2 className="py-4 text-2xl font-semibold " >BUILDING SURVEYS</h2>
                                 <p className="text-sm text-gray-400">
                                     Creativity is the ability to generate, create, or discover new ideas, solutions, and possibilities.
@@ -50,7 +57,7 @@ export default function About() {
                         </div>
                         <div className="border-2 border-gray-500 ">
                             <div className="-m-0.5 p-4 text-center transition hover:-translate-y-3 hover:-translate-x-3 aspect-square bg-zinc-100 ">
-                                <Image src="/image/profile1.jpg" width={200} height={200} alt="" className="mx-auto rounded-full " />
+                                <Image src="/image/profile1.jpg" width={200} height={200} alt="Team member profile" className="mx-auto rounded-full aspect-square object-cover" />
                                 <h2 className="py-4 text-2xl font-semibold " >BUILDING SURVEYS</h2>
                                 <p className="text-sm text-gray-400">
                                     Creativity is the ability to generate, create, or discover new ideas, solutions, and possibilities.
@@ -59,7 +66,7 @@ export default function About() {
                         </div>
                         <div className="border-2 border-gray-500 ">
                             <div className="-m-0.5 p-4 text-center transition hover:-translate-y-3 hover:-translate-x-3 aspect-square bg-zinc-100 ">
-                                <Image src="/image/profile3.jpg" width={200} height={200} alt="" className="mx-auto rounded-full " />
+                                <Image src="/image/profile3.jpg" width={200} height={200} alt="Team member profile" className="mx-auto rounded-full aspect-square object-cover" />
                                 <h2 className="py-4 text-2xl font-semibold " >BUILDING SURVEYS</h2>
                                 <p className="text-sm text-gray-400">
                                     Creativity is the ability to generate, create, or discover new ideas, solutions, and possibilities.
