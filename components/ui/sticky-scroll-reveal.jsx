@@ -45,7 +45,7 @@ export const StickyScroll = ({
 
   useEffect(() => {
     setBackgroundColor(backgroundColors[activeCard % backgroundColors.length]);
-  }, [activeCard]);
+  }, [activeCard, backgroundColors]);
 
   return (
     <motion.div

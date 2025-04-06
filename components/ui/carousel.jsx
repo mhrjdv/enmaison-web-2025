@@ -37,12 +37,11 @@ export const Carousel = ({
     if (!images || images.length === 0) {
       console.error('No images provided to carousel');
       // Set a default placeholder image
-      setLoadedImages(['https://placehold.co/1920x1080/e2e8f0/64748b?text=No+Images+Available']);
+      setLoadedImages(['/image/placeholder.jpg']);
       setLoading(false);
       return;
     }
 
-    console.log('Carousel images:', images);
     // Set loaded images immediately to avoid loading state issues
     setLoadedImages(images);
     setLoading(false);
@@ -50,15 +49,14 @@ export const Carousel = ({
     // Optional: Preload images in the background for smoother transitions
     const preloadImages = () => {
       images.forEach((src) => {
-        const img = new window.Image();
-        img.src = src;
+        if (typeof window !== 'undefined') {
+          const img = new window.Image();
+          img.src = src;
+        }
       });
     };
 
-    // Only run preloading in browser environment
-    if (typeof window !== 'undefined') {
-      preloadImages();
-    }
+    preloadImages();
   }, [images]);
 
   useEffect(() => {
@@ -68,7 +66,7 @@ export const Carousel = ({
       }, interval);
       return () => clearInterval(intervalId);
     }
-  }, [autoplay, isHovered, interval, loadedImages]);
+  }, [autoplay, isHovered, interval, loadedImages, handleNext]);
 
   const variants = {
     enter: (direction) => {
@@ -89,8 +87,8 @@ export const Carousel = ({
     },
   };
 
-  // Show loading state only briefly, then proceed with whatever images we have
-  if (loading && loadedImages.length === 0) {
+  // Show loading state only briefly
+  if (loading) {
     return (
       <div className={cn("relative w-full overflow-hidden rounded-xl flex items-center justify-center bg-gray-100", className)}>
         <div className="animate-pulse flex flex-col items-center justify-center">
@@ -109,8 +107,9 @@ export const Carousel = ({
           <NextImage
             src="/image/placeholder.jpg"
             alt="No images available"
-            fill
-            className="object-cover"
+            width={800}
+            height={600}
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="text-center p-8 bg-white/10 backdrop-blur-sm rounded-lg">
@@ -147,8 +146,8 @@ export const Carousel = ({
           <NextImage
             src={loadedImages[currentIndex]}
             alt={`Project image ${currentIndex + 1}`}
-            width={1920}
-            height={1080}
+            width={800}
+            height={600}
             className="w-full h-full object-cover"
             priority={currentIndex === 0}
             onError={(e) => {

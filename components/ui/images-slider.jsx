@@ -30,7 +30,7 @@ export const ImagesSlider = ({
 
   useEffect(() => {
     loadImages();
-  }, []);
+  }, [loadImages]);
 
   const loadImages = () => {
     setLoading(true);
@@ -50,7 +50,7 @@ export const ImagesSlider = ({
       })
       .catch((error) => console.error("Failed to load images", error));
   };
-  
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowRight") {
@@ -74,7 +74,7 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       clearInterval(interval);
     };
-  }, []);
+  }, [autoplay, handleNext, handlePrevious]);
 
   const slideVariants = {
     initial: {
