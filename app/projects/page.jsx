@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { TbArrowUpRight } from "react-icons/tb";
+import projectsData from "@/data/projects.json";
 
 export const metadata = {
     title: "Our Projects | Interior Design Portfolio",
@@ -6,53 +9,38 @@ export const metadata = {
 };
 
 export default function Projects() {
-    const projects = [
-        {
-            id: 1,
-            name: 'Drowing room for family time ',
-            description: 'Badroom with a clean and comfortable design for your family. charming whit a modern design. ',
-            image: '/image/project3.jpg',
-            link: '',
-        },
-        {
-            id: 2,
-            name: 'Kitchen look modern and clean',
-            description: 'kitchen look modern and clean. charming whit a modern design. ',
-            image: '/image/project2.jpg',
-            link: '',
-        },
-        {
-            id: 3,
-            name: 'Perfect living room for family time',
-            description: 'Drowing room with a clean and comfortable design for your family. charming whit a modern design. ',
-            image: '/image/project4.png',
-        },
-    ];
+    const projects = projectsData;
     return (
         <div className="">
             <div className="bg-[url('/image/backgroundproject.jpg')] bg-center bg-cover ">
                 <h1 className="container py-64 text-6xl font-semibold tracking-widest text-white ">OUR PROJECTS</h1>
             </div>
-            <div className="container grid grid-cols-2 gap-8 py-8">
+            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
 
                 {projects.map((project) => (
-                    <div key={project.id} className="relative overflow-hidden rounded-xl group">
-                        <div>
+                    <Link
+                        href={`/projects/${project.slug}`}
+                        key={project.id}
+                        className="relative overflow-hidden rounded-xl group block h-[400px]"
+                    >
+                        <div className="h-full">
                             <Image
-                                src={project.image}
+                                src={project.mainImage}
                                 width={480}
                                 height={380}
                                 alt={project.name}
-                                className="w-full object-cover aspect-video"
+                                className="w-full h-full object-cover"
                             />
                         </div>
-                        <div className="absolute bottom-0 flex-col items-center justify-end w-full gap-32 p-12 text-xl text-white transition-transform duration-300 ease-in-out translate-y-full bg-gradient-to-b from-transparent to-black group-hover:translate-y-0">
-                            <h1 className="text-2xl font-semibold">{project.name}</h1>
-                            <p className="py-4 ">{project.description}</p>
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute bottom-0 flex flex-col items-start justify-end w-full p-8 text-white z-10">
+                            <h2 className="text-2xl font-semibold mb-2">{project.name}</h2>
+                            <p className="text-sm mb-4 max-w-md">{project.tagline}</p>
+                            <span className="inline-flex items-center px-4 py-2 bg-white text-black rounded-full text-sm font-medium group-hover:bg-opacity-100 transition-all duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                                View Project <TbArrowUpRight className="ml-1" />
+                            </span>
                         </div>
-                    </div>
-
-
+                    </Link>
                 ))}
             </div>
         </div>

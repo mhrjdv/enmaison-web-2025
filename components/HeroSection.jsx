@@ -18,7 +18,7 @@ export default function HeroSection() {
         { src: "/image/kitchen1.jpg", alt: "Contemporary kitchen design", caption: "Contemporary Kitchen" },
     ];
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 to-zinc-100 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24">
+        <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 to-zinc-100 pt-16 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28">
             {/* Background decorative elements */}
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute -top-12 -right-12 sm:-top-24 sm:-right-24 h-48 w-48 sm:h-96 sm:w-96 rounded-full bg-gray-200"></div>
@@ -26,7 +26,7 @@ export default function HeroSection() {
             </div>
 
             {/* Extended background for header overlap */}
-            <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-zinc-50 to-zinc-50/0 z-10"></div>
+            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-zinc-50 to-zinc-50/0 z-10"></div>
 
             <div className="container relative z-10 px-4 sm:px-6 md:px-8">
                 <div className="grid gap-8 md:gap-10 lg:grid-cols-2 lg:gap-12 items-center">

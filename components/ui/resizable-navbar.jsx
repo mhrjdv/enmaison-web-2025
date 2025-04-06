@@ -5,7 +5,6 @@ import {
   motion,
   AnimatePresence,
   useScroll,
-  useMotionValueEvent,
 } from "motion/react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
@@ -16,19 +15,12 @@ export const Navbar = ({
   className
 }) => {
   const ref = useRef(null);
-  const { scrollY } = useScroll({
+  // Keep the ref for future use if needed
+  useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const [visible, setVisible] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  });
+  // We no longer need the visible state since we're always showing the blur effect
 
   // Position navbar with a little space from the top
   const initialTop = 12;
@@ -42,27 +34,21 @@ export const Navbar = ({
       }}
       className={cn("fixed inset-x-0 z-50 w-full", className)}
     >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, { visible })
-          : child)}
+      {children}
     </motion.div>
   );
 };
 
 export const NavBody = ({
   children,
-  className,
-  visible
+  className
 }) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "40%" : "100%",
+        backdropFilter: "blur(10px)",
+        boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+        width: "40%",
         y: 12,
       }}
       transition={{
@@ -75,7 +61,7 @@ export const NavBody = ({
       }}
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex dark:bg-transparent",
-        visible ? "bg-white/80 dark:bg-neutral-950/80" : "bg-white/10 backdrop-blur-sm",
+        "bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm",
         className
       )}
     >
@@ -122,17 +108,14 @@ export const NavItems = ({
 
 export const MobileNav = ({
   children,
-  className,
-  visible
+  className
 }) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "92%" : "96%",
+        backdropFilter: "blur(10px)",
+        boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+        width: "92%",
         paddingRight: "16px",
         paddingLeft: "16px",
         borderRadius: "1rem",
@@ -145,7 +128,7 @@ export const MobileNav = ({
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-1rem)] flex-col items-center justify-between bg-transparent py-3 lg:hidden",
-        visible ? "bg-white/80 dark:bg-neutral-950/80" : "bg-white/10 backdrop-blur-sm",
+        "bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm",
         className
       )}
     >
