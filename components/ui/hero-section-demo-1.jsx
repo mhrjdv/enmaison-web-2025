@@ -3,6 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { ShinyButton } from "@/components/magicui/shiny-button";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { TbArrowUpRight } from "react-icons/tb";
 // We're not importing Header as it's already in the layout
 
 export default function HeroSectionOne() {
@@ -67,11 +70,15 @@ export default function HeroSectionOne() {
           }}
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <Link href="/projects" className="w-60 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-center">
-            View Our Projects
+          <Link href="/projects" className="w-60">
+            <RainbowButton className="w-full font-medium text-base py-3">
+              View Our Projects <TbArrowUpRight className="inline-block ml-2 size-5" />
+            </RainbowButton>
           </Link>
-          <Link href="/contact" className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900 text-center">
-            Contact Us
+          <Link href="/contact" className="w-60">
+            <ShinyButton className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 py-3 text-base">
+              Contact Us <TbArrowUpRight className="inline-block ml-2 size-5" />
+            </ShinyButton>
           </Link>
         </motion.div>
         <motion.div
