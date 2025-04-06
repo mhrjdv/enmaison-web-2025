@@ -1,0 +1,72 @@
+/* GoToTop button styles */
+.go-to-top-button {
+  position: fixed;
+  z-index: 999; /* Higher z-index to ensure visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 231, 235, 1);
+  cursor: pointer;
+}
+
+.go-to-top-button:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.go-to-top-button:active {
+  transform: translateY(0);
+}
+
+/* Dark mode styles */
+.dark .go-to-top-button {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(75, 85, 99, 1);
+}
+
+/* Icon sizing */
+.go-to-top-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Mobile positioning (right-aligned) */
+@media (max-width: 767px) {
+  .go-to-top-button {
+    /* Position it on the right side with proper spacing */
+    bottom: 100px; /* Higher position to avoid overlap with dock */
+    right: 16px; /* Right alignment with proper spacing from edge */
+    left: auto; /* Reset left positioning */
+    transform: none; /* Reset transform */
+    width: 44px; /* Optimal size for touch targets (Apple HIG recommends min 44px) */
+    height: 44px;
+    /* Subtle shadow for depth without being distracting */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Semi-transparent background that works in both light and dark modes */
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px); /* Modern glass effect */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .go-to-top-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #333;
+  }
+}
+
+/* Desktop positioning (bottom right) */
+@media (min-width: 768px) {
+  .go-to-top-button {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+    right: 24px;
+    width: 48px;
+    height: 48px;
+  }
+}

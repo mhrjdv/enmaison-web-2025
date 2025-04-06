@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import GoToTop from "@/components/GoToTop";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <GoToTop />
       </body>
     </html>
   );
