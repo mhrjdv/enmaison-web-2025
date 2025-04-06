@@ -117,40 +117,6 @@ export default function HeroSection() {
                             </Swiper>
                         </div>
                     </div>
-
-                    {/* Mobile image carousel - Only visible on mobile */}
-                    <div className="relative block lg:hidden mt-6">
-                        <div className="absolute -top-3 -left-3 w-full h-full bg-gray-200 rounded-xl transform rotate-2"></div>
-                        <div className="relative overflow-hidden rounded-xl shadow-lg">
-                            <Swiper
-                                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                                modules={[Autoplay, Navigation]}
-                                loop={true}
-                                slidesPerView={1}
-                                speed={800}
-                                direction="horizontal"
-                                className="w-full h-full"
-                            >
-                                {heroImages.map((image, index) => (
-                                    <SwiperSlide key={index}>
-                                        <div className="relative">
-                                            <Image
-                                                src={image.src}
-                                                width={600}
-                                                height={400}
-                                                alt={image.alt}
-                                                className="w-full h-auto object-cover aspect-[4/3]"
-                                                priority={index === 0}
-                                            />
-                                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                                                <p className="text-white text-sm font-medium">{image.caption}</p>
-                                            </div>
-                                        </div>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

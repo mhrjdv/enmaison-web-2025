@@ -3,7 +3,7 @@ import CatalogSwiperSection from "@/components/CatalogSwiperCection";
 import CatalogueSection from "@/components/CatalogueSection";
 import CompanySection from "@/components/CompanySection";
 import ContactSection from "@/components/ContactSection";
-import HeroSection from "@/components/HeroSection";
+import HeroSectionOne from "@/components/ui/hero-section-demo-1";
 
 export const metadata = {
   title: "Home | Interior Design Portfolio",
@@ -13,8 +13,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <CompanySection />
+      <HeroSectionOne />
+      {/* <CompanySection /> */}
       <AboutComponent />
       <CatalogueSection />
       <CatalogSwiperSection />
