@@ -22,6 +22,7 @@ const navItems = [
   { name: "PROJECTS", link: "/projects" },
   { name: "ABOUT US", link: "/about" },
   { name: "GALLERY", link: "/gallery" },
+  { name: "BLOGS", link: "/blogs" },
 ];
 
 export default function Header() {

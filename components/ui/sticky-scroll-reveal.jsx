@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -32,12 +32,12 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = [
+  const backgroundColors = useMemo(() => [
     "rgb(239 246 255)", // light blue
     "rgb(240 253 244)", // light green
     "rgb(254 242 242)", // light red
     "rgb(252 246 255)", // light purple
-  ];
+  ], []);
 
   const [backgroundColor, setBackgroundColor] = useState(
     backgroundColors[0],

@@ -1,5 +1,8 @@
+"use client";
 import Link from "next/link";
-
+import { AuroraText } from "./magicui/aurora-text";
+import { HyperText } from "./magicui/hyper-text";
+import { TbBrandWhatsapp, TbArrowUpRight } from "react-icons/tb";
 
 export default function Footer() {
 
@@ -50,11 +53,39 @@ export default function Footer() {
             <div className="py-10 bg-zinc-200">
                 <div className="container text-center text-gray-500 lg:justify-between lg:flex">
                     <div className="pb-4 lg:pb-0">
-                        <p>&copy;2025 ENMAISON DESIGNS.All rights reserved </p>
+                        <p>&copy;2025 ENMAISON DESIGNS. All rights reserved </p>
                     </div>
-                    <div className="">
-                        <Link className="p-4 hover:underline" href="/privacy">Privacy</Link>
-                        <Link className="p-4 hover:underline" href="/terms">Terms</Link>
+                    <div className="flex flex-col items-center lg:flex-row lg:items-center gap-2 lg:gap-6">
+                        <a
+                            href="https://wa.me/919028431000?text=Hello%20Mihir,%20I%20visited%20the%20Enmaison%20Designs%20website%20and%20wanted%20to%20connect%20with%20you."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 mb-3 lg:mb-0 px-3 py-1.5 bg-white/50 hover:bg-white/80 rounded-full shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer group"
+                            title="Contact the developer via WhatsApp"
+                        >
+                            <TbBrandWhatsapp className="text-green-600 opacity-70 group-hover:opacity-100 size-4 transition-opacity" />
+                            <HyperText
+                                className="text-sm font-medium py-0 group-hover:text-gray-800 transition-colors"
+                                duration={1000}
+                                delay={300}
+                                animateOnHover={true}
+                                startOnView={true}
+                            >
+                                DEVELOPED BY
+                            </HyperText>
+                            <AuroraText
+                                className="text-sm font-semibold ml-1 group-hover:scale-105 transition-transform"
+                                colors={["#FF0080", "#7928CA", "#0070F3", "#38bdf8"]}
+                                speed={1.5}
+                            >
+                                Mihir Jadhav
+                                <TbArrowUpRight className="ml-1 inline-block size-3.5 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </AuroraText>
+                        </a>
+                        <div className="flex items-center gap-6">
+                            <Link className="p-2 hover:underline" href="/privacy">Privacy</Link>
+                            <Link className="p-2 hover:underline" href="/terms">Terms</Link>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "10 Interior Design Trends for 2024",
+    "slug": "interior-design-trends-2024",
+    "excerpt": "Discover the hottest interior design trends that will dominate homes in 2024, from sustainable materials to bold colors.",
+    "content": "Interior design is constantly evolving, and staying ahead of the trends can help you create a space that feels both current and timeless. In 2024, we're seeing a shift towards more sustainable materials, bold color choices, and a blend of modern and vintage elements. Here are the top 10 trends to watch for this year...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile1.jpg",
+    "date": "June 15, 2024",
+    "readTime": "5 min read",
+    "image": "/image/gallery1123.jpg",
+    "category": "Trends"
+  },
+  {
+    "id": 2,
+    "title": "How to Maximize Small Living Spaces",
+    "slug": "maximize-small-living-spaces",
+    "excerpt": "Learn practical tips and tricks to make the most of your small living space without sacrificing style or comfort.",
+    "content": "Living in a small space doesn't mean you have to compromise on style or functionality. With the right design strategies, you can transform even the tiniest apartment into a comfortable, efficient, and beautiful home. From multi-functional furniture to clever storage solutions, here's how to maximize every square inch...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile2.jpg",
+    "date": "May 28, 2024",
+    "readTime": "4 min read",
+    "image": "/image/gallery1.jpg",
+    "category": "Tips & Tricks"
+  },
+  {
+    "id": 3,
+    "title": "The Psychology of Color in Interior Design",
+    "slug": "psychology-of-color-interior-design",
+    "excerpt": "Explore how different colors affect mood and perception in your home, and how to use color psychology in your interior design.",
+    "content": "Colors do more than just make your space look good – they can significantly impact how you feel in a room. From calming blues to energizing reds, each color has psychological effects that can influence your mood, productivity, and even appetite. Understanding color psychology can help you create spaces that not only look beautiful but also support your emotional wellbeing...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile1.jpg",
+    "date": "April 10, 2024",
+    "readTime": "6 min read",
+    "image": "/image/gallery2.jpg",
+    "category": "Psychology"
+  },
+  {
+    "id": 4,
+    "title": "Sustainable Interior Design: Eco-Friendly Home Decor",
+    "slug": "sustainable-interior-design",
+    "excerpt": "Discover how to create beautiful, environmentally-friendly spaces with sustainable materials and practices.",
+    "content": "As environmental awareness grows, more homeowners are seeking ways to incorporate sustainability into their interior design. From choosing eco-friendly materials to reducing waste and energy consumption, sustainable design practices can help minimize your environmental footprint while creating a healthier, more beautiful home...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile2.jpg",
+    "date": "March 5, 2024",
+    "readTime": "7 min read",
+    "image": "/image/gallery3.jpg",
+    "category": "Sustainability"
+  },
+  {
+    "id": 5,
+    "title": "Mixing Modern and Vintage: Creating Timeless Interiors",
+    "slug": "mixing-modern-vintage-interiors",
+    "excerpt": "Learn how to blend contemporary and vintage elements to create unique, character-filled spaces that stand the test of time.",
+    "content": "The most interesting interiors often combine elements from different eras, creating spaces with depth, character, and a sense of history. Mixing modern and vintage pieces can result in a home that feels both fresh and timeless, avoiding the pitfalls of short-lived trends. Here's how to strike the perfect balance between old and new...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile1.jpg",
+    "date": "February 18, 2024",
+    "readTime": "5 min read",
+    "image": "/image/gallery4.jpg",
+    "category": "Style"
+  },
+  {
+    "id": 6,
+    "title": "Lighting Design 101: Transforming Spaces with Light",
+    "slug": "lighting-design-101",
+    "excerpt": "Understand the fundamentals of lighting design and how proper lighting can completely transform the look and feel of your home.",
+    "content": "Lighting is one of the most powerful yet often overlooked elements of interior design. The right lighting plan can enhance architectural features, create ambiance, improve functionality, and even make spaces appear larger. From natural light to artificial lighting layers, mastering the basics of lighting design can dramatically transform your home...",
+    "author": "Mihir Jadhav",
+    "authorImage": "/image/profile2.jpg",
+    "date": "January 30, 2024",
+    "readTime": "8 min read",
+    "image": "/image/gallery5.jpg",
+    "category": "Lighting"
+  }
+]

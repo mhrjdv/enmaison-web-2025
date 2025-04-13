@@ -7,7 +7,8 @@ import {
   TbPhotoSearch,
   TbInfoCircle,
   TbLayoutGrid,
-  TbMailFast
+  TbMailFast,
+  TbBook
 } from "react-icons/tb";
 import { motion } from "motion/react";
 
@@ -16,6 +17,7 @@ const navItems = [
   { name: "PROJECTS", link: "/projects", icon: TbPhotoSearch },
   { name: "ABOUT", link: "/about", icon: TbInfoCircle },
   { name: "GALLERY", link: "/gallery", icon: TbLayoutGrid },
+  { name: "BLOGS", link: "/blogs", icon: TbBook },
   { name: "CONTACT", link: "/contact", icon: TbMailFast },
 ];
 
@@ -30,10 +32,10 @@ export default function MobileDock() {
       className="fixed bottom-4 left-0 right-0 z-50 sm:hidden"
     >
       <Dock
-        className="bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-800 shadow-xl max-w-[90%] mx-auto gap-8"
-        iconSize={48}
-        iconMagnification={64}
-        iconDistance={130}
+        className="bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-800 shadow-xl max-w-[92%] mx-auto gap-4 py-2 px-2"
+        iconSize={40}
+        iconMagnification={56}
+        iconDistance={100}
       >
         {navItems.map((item, index) => {
           const isActive = pathname === item.link;
@@ -47,7 +49,7 @@ export default function MobileDock() {
                   : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
               >
                 <Icon
-                  className={`size-7 ${isActive
+                  className={`size-6 ${isActive
                     ? 'text-black dark:text-white'
                     : 'text-gray-600 dark:text-gray-400'}`}
                 />

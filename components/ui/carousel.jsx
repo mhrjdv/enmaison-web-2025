@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import NextImage from "next/image";
@@ -18,19 +18,19 @@ export const Carousel = ({
   const [loadedImages, setLoadedImages] = useState([]);
   const carouselRef = useRef(null);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setDirection("right");
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     setDirection("left");
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
-  };
+  }, [images.length]);
 
   useEffect(() => {
     // Check if images array is valid
