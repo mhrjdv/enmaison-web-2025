@@ -65,17 +65,17 @@ export default function Contact() {
     }
   ];
 
-    return (
+  return (
     <div className="min-h-screen bg-gradient-to-br from-white to-enmaison-cream">
       <div className="container pt-24 md:pt-28 lg:pt-32 pb-16">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-enmaison-dark-green mb-4">
-            Let's Bring Your Vision to
+            Let&apos;s Bring Your Vision to
             <span className="text-enmaison-gold block">Life</span>
           </h1>
           <p className="text-xl text-enmaison-dark-green/80 max-w-2xl mx-auto">
-            Ready to transform your space? Get in touch and let's create something beautiful together.
+            Ready to transform your space? Get in touch and let&apos;s create something beautiful together.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function Contact() {
             <CardHeader className="pb-6">
               <CardTitle className="text-2xl text-enmaison-dark-green">Start Your Project</CardTitle>
               <CardDescription className="text-enmaison-dark-green/70">
-                Fill out the form below and we'll get back to you within 24 hours.
+                Fill out the form below and we&apos;ll get back to you within 24 hours.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
@@ -205,7 +205,7 @@ export default function Contact() {
             <CardHeader className="pb-6">
               <CardTitle className="text-2xl text-enmaison-dark-green">Get in Touch</CardTitle>
               <CardDescription className="text-enmaison-dark-green/70">
-                We're here to help bring your vision to life.
+                We&apos;re here to help bring your vision to life.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
@@ -278,7 +278,7 @@ export default function Contact() {
                 Ready to Begin?
               </h2>
               <p className="text-enmaison-dark-green/80 mb-6 leading-relaxed">
-                Every great space starts with a conversation. Let's create something remarkable together.
+                Every great space starts with a conversation. Let&apos;s create something remarkable together.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
@@ -305,6 +305,6 @@ export default function Contact() {
           </Card>
         </div>
       </div>
-        </div>
-    );
+    </div>
+  );
 }

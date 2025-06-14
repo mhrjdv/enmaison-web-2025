@@ -21,7 +21,7 @@ export default function Projects() {
                     <Link
                         href={`/projects/${project.slug}`}
                         key={project.id}
-                        className="relative overflow-hidden rounded-xl group block h-[400px]"
+                        className="relative overflow-hidden rounded-xl group block h-[400px] shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                         <div className="h-full">
                             <Image
@@ -29,14 +29,14 @@ export default function Projects() {
                                 width={480}
                                 height={380}
                                 alt={project.name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                         </div>
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-enmaison-dark-green/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div className="absolute bottom-0 flex flex-col items-start justify-end w-full p-8 text-white z-10">
-                            <h2 className="text-2xl font-semibold mb-2">{project.name}</h2>
-                            <p className="text-sm mb-4 max-w-md">{project.tagline}</p>
-                            <span className="inline-flex items-center px-4 py-2 bg-white text-black rounded-full text-sm font-medium group-hover:bg-opacity-100 transition-all duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                            <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-enmaison-gold transition-colors duration-300">{project.name}</h2>
+                            <p className="text-sm mb-4 max-w-md text-white/90 leading-relaxed">{project.tagline}</p>
+                            <span className="inline-flex items-center px-4 py-2 bg-enmaison-gold text-enmaison-dark-green rounded-full text-sm font-semibold hover:bg-white transition-all duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 shadow-lg">
                                 View Project <TbArrowUpRight className="ml-1" />
                             </span>
                         </div>
