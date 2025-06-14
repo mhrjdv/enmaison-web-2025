@@ -80,7 +80,15 @@ module.exports = {
   			'color-2': 'hsl(var(--color-2))',
   			'color-3': 'hsl(var(--color-3))',
   			'color-4': 'hsl(var(--color-4))',
-  			'color-5': 'hsl(var(--color-5))'
+  			'color-5': 'hsl(var(--color-5))',
+        // EnMaison Brand Colors
+        'enmaison': {
+          'green': 'hsl(var(--enmaison-green))',
+          'gold': 'hsl(var(--enmaison-gold))',
+          'teal': 'hsl(var(--enmaison-teal))',
+          'cream': 'hsl(var(--enmaison-cream))',
+          'dark-green': 'hsl(var(--enmaison-dark-green))',
+        }
   		},
   		animation: {
   			rainbow: 'rainbow var(--speed, 2s) infinite linear'

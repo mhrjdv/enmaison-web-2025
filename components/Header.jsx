@@ -63,13 +63,13 @@ export default function Header() {
               <Link
                 key={index}
                 href={item.link}
-                className="block w-full text-center px-3 py-2.5 text-base font-medium text-neutral-700 transition-colors hover:text-black hover:bg-gray-50 rounded-lg dark:text-neutral-300 dark:hover:text-white"
+                className="block w-full text-center px-3 py-2.5 text-base font-medium text-enmaison-dark-green transition-colors hover:text-enmaison-green hover:bg-enmaison-gold/10 rounded-lg dark:text-enmaison-cream dark:hover:text-enmaison-gold dark:hover:bg-enmaison-gold/20"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="mt-5 pt-5 border-t border-gray-100 w-full px-3 text-center">
+            <div className="mt-5 pt-5 border-t border-enmaison-gold/30 w-full px-3 text-center">
               <NavbarButton href="/contact" variant="dark" className="w-full">
                 Contact Us <TbArrowUpRight className="inline-block ml-2" />
               </NavbarButton>

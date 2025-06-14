@@ -32,7 +32,7 @@ export default function MobileDock() {
       className="fixed bottom-4 left-0 right-0 z-50 sm:hidden"
     >
       <Dock
-        className="bg-white/95 dark:bg-gray-900/95 border border-gray-200 dark:border-gray-800 shadow-xl max-w-[92%] mx-auto gap-4 py-2 px-2"
+        className="bg-white/95 dark:bg-enmaison-dark-green/95 border border-enmaison-gold/20 dark:border-enmaison-gold/30 shadow-2xl max-w-[92%] mx-auto gap-4 py-2 px-2 backdrop-blur-md"
         iconSize={40}
         iconMagnification={56}
         iconDistance={100}
@@ -45,13 +45,13 @@ export default function MobileDock() {
             <Link href={item.link} key={index}>
               <DockIcon
                 className={`${isActive
-                  ? 'bg-gray-100 dark:bg-gray-800'
-                  : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
+                  ? 'bg-enmaison-gold/20 dark:bg-enmaison-gold/30'
+                  : 'hover:bg-enmaison-gold/10 dark:hover:bg-enmaison-gold/20'} transition-colors duration-300`}
               >
                 <Icon
                   className={`size-6 ${isActive
-                    ? 'text-black dark:text-white'
-                    : 'text-gray-600 dark:text-gray-400'}`}
+                    ? 'text-enmaison-green dark:text-enmaison-gold'
+                    : 'text-enmaison-teal dark:text-enmaison-cream hover:text-enmaison-green dark:hover:text-enmaison-gold'} transition-colors duration-300`}
                 />
               </DockIcon>
             </Link>

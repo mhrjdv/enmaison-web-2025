@@ -61,7 +61,7 @@ export const NavBody = ({
       }}
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex dark:bg-transparent",
-        "bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm",
+        "bg-white/80 dark:bg-enmaison-dark-green/90 backdrop-blur-sm border border-enmaison-gold/20",
         className
       )}
     >
@@ -81,7 +81,7 @@ export const NavItems = ({
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-800 transition duration-200 hover:text-zinc-900 lg:flex lg:space-x-2",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-enmaison-dark-green transition duration-200 hover:text-enmaison-green lg:flex lg:space-x-2 dark:text-enmaison-gold",
         className
       )}
     >
@@ -89,14 +89,14 @@ export const NavItems = ({
         <Link
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-neutral-800 font-medium dark:text-neutral-200"
+          className="relative px-4 py-2 text-enmaison-dark-green font-medium hover:text-enmaison-green dark:text-enmaison-cream dark:hover:text-enmaison-gold transition-colors duration-300"
           key={`link-${idx}`}
           href={item.link}
         >
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="absolute inset-0 h-full w-full rounded-full bg-enmaison-gold/10 dark:bg-enmaison-gold/20"
             />
           )}
           <span className="relative z-20">{item.name}</span>
@@ -128,7 +128,7 @@ export const MobileNav = ({
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-1rem)] flex-col items-center justify-between bg-transparent py-3 lg:hidden",
-        "bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm",
+        "bg-white/80 dark:bg-enmaison-dark-green/90 backdrop-blur-sm border border-enmaison-gold/20",
         className
       )}
     >
@@ -163,7 +163,7 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-center justify-start gap-4 rounded-xl bg-white px-5 py-6 shadow-lg dark:bg-neutral-950",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-center justify-start gap-4 rounded-xl bg-white/95 px-5 py-6 shadow-lg dark:bg-enmaison-dark-green/95 backdrop-blur-sm border border-enmaison-gold/20",
             className
           )}
         >
@@ -180,13 +180,13 @@ export const MobileNavToggle = ({
 }) => {
   return (
     <div
-      className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer ml-2"
+      className="w-10 h-10 flex items-center justify-center rounded-md hover:bg-enmaison-gold/10 dark:hover:bg-enmaison-gold/20 transition-colors cursor-pointer ml-2"
       onClick={onClick}
     >
       {isOpen ? (
-        <IconX className="text-black dark:text-white" />
+        <IconX className="text-enmaison-dark-green dark:text-enmaison-gold" />
       ) : (
-        <IconMenu2 className="text-black dark:text-white" />
+        <IconMenu2 className="text-enmaison-dark-green dark:text-enmaison-gold" />
       )}
     </div>
   );
@@ -196,18 +196,16 @@ export const NavbarLogo = ({ logoSrc, logoAlt, logoText }) => {
   return (
     <Link
       href="/"
-      className="relative z-20 mr-6 flex items-center space-x-2.5 px-1 py-1 text-sm font-medium text-black"
+      className="relative z-20 mr-6 flex items-center space-x-2.5 px-1 py-1 text-sm font-medium text-enmaison-dark-green dark:text-enmaison-gold"
     >
-      <div className="relative w-8 h-8 flex items-center justify-center bg-gray-100 rounded-md overflow-hidden shadow-sm">
-        <Image
-          src={logoSrc || "/placeholder-logo.svg"}
-          alt={logoAlt || "Enmaison Designs"}
-          width={30}
-          height={30}
-          unoptimized
-        />
+      <div className="flex items-center justify-center rounded-full bg-enmaison-gold/10 p-2">
+        <div className="w-8 h-8 bg-gradient-to-br from-enmaison-green to-enmaison-teal rounded-full flex items-center justify-center">
+          <span className="text-white font-bold text-xs">E</span>
+        </div>
       </div>
-      <span className="font-semibold text-base text-black dark:text-white">{logoText || "Enmaison"}</span>
+      <span className="font-bold text-lg text-enmaison-dark-green dark:text-enmaison-gold">
+        {logoText}
+      </span>
     </Link>
   );
 };
@@ -220,24 +218,26 @@ export const NavbarButton = ({
   variant = "primary",
   ...props
 }) => {
-  const baseStyles =
-    "px-5 py-2.5 rounded-full bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
-
-  const variantStyles = {
-    primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-gray-900 text-white shadow-md hover:bg-gray-800 border border-gray-900",
-    gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+  const baseClasses = "relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  
+  const variantClasses = {
+    primary: "bg-gradient-to-r from-enmaison-green to-enmaison-teal text-white hover:from-enmaison-teal hover:to-enmaison-green shadow-lg hover:shadow-xl transform hover:scale-105 focus:ring-enmaison-gold",
+    secondary: "bg-white text-enmaison-dark-green border-2 border-enmaison-gold hover:bg-enmaison-cream hover:text-enmaison-green shadow-lg hover:shadow-xl transform hover:scale-105 focus:ring-enmaison-gold",
+    dark: "bg-enmaison-dark-green text-enmaison-gold hover:bg-enmaison-green hover:text-white shadow-lg hover:shadow-xl transform hover:scale-105 focus:ring-enmaison-gold",
   };
 
+  const classes = cn(baseClasses, variantClasses[variant], className);
+
+  if (href) {
+    return (
+      <Link href={href} className={classes} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
+    <Tag className={classes} {...props}>
       {children}
     </Tag>
   );

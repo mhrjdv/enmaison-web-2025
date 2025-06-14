@@ -11,19 +11,15 @@ export default function MobileHeader() {
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
       className="fixed top-0 left-0 right-0 z-50 sm:hidden"
     >
-      <div className="bg-white/95 dark:bg-gray-900/95 border-b border-gray-200 dark:border-gray-800 shadow-sm backdrop-blur-md py-3 px-4 mt-1">
+      <div className="bg-white/95 dark:bg-enmaison-dark-green/95 border-b border-enmaison-gold/20 dark:border-enmaison-gold/30 shadow-lg backdrop-blur-md py-3 px-4 mt-1">
         <div className="flex justify-center items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-9 h-9 flex items-center justify-center bg-gray-100 rounded-md overflow-hidden shadow-sm">
-              <Image
-                src="/placeholder-logo.svg"
-                alt="Enmaison Designs"
-                width={32}
-                height={32}
-                unoptimized
-              />
+            <div className="flex items-center justify-center rounded-full bg-enmaison-gold/10 p-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-enmaison-green to-enmaison-teal rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">E</span>
+              </div>
             </div>
-            <span className="font-semibold text-lg text-black dark:text-white">Enmaison</span>
+            <span className="font-bold text-lg text-enmaison-dark-green dark:text-enmaison-gold">Enmaison</span>
           </Link>
         </div>
       </div>
