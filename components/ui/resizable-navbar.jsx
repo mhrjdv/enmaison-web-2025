@@ -5,7 +5,7 @@ import {
   motion,
   AnimatePresence,
   useScroll,
-} from "motion/react";
+} from "framer-motion";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
@@ -219,7 +219,7 @@ export const NavbarButton = ({
   ...props
 }) => {
   const baseClasses = "relative inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
-  
+
   const variantClasses = {
     primary: "bg-gradient-to-r from-enmaison-green to-enmaison-teal text-white hover:from-enmaison-teal hover:to-enmaison-green shadow-lg hover:shadow-xl transform hover:scale-105 focus:ring-enmaison-gold",
     secondary: "bg-white text-enmaison-dark-green border-2 border-enmaison-gold hover:bg-enmaison-cream hover:text-enmaison-green shadow-lg hover:shadow-xl transform hover:scale-105 focus:ring-enmaison-gold",

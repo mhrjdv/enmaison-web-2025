@@ -1,185 +1,99 @@
 [
   {
-    "id": "1",
-    "name": "Modern Drawing Room",
-    "slug": "modern-drawing-room",
-    "tagline": "A comfortable and stylish space for family time",
-    "description": "This modern drawing room combines comfort and style, creating the perfect environment for family gatherings and relaxation. The design focuses on clean lines, neutral colors, and strategic lighting to create a warm and inviting atmosphere.",
-    "client": "Johnson Family",
-    "location": "New York, NY",
-    "completionDate": "June 2023",
-    "duration": "3 months",
-    "mainImage": "/image/sample/spacejoy-9M66C_w_ToM-unsplash.jpg",
+    "id": "pawars-residence",
+    "name": "Pawar's Residence",
+    "slug": "pawars-residence",
+    "tagline": "Pawar's Residence at Talav Road, Khamgaon, is an interior project that beautifully balances modern d...",
+    "description": "Pawar's Residence at Talav Road, Khamgaon, is an interior project that beautifully balances modern design with functionality, reflecting the unique lifestyle and preferences of its occupants. EnMaison Designs has meticulously crafted the interiors with a focus on creating a warm and inviting atmosphere, using a palette of bright yet subtle colors. These colors infuse the space with energy while maintaining a sense of calm and sophistication.",
+    "mainImage": "/projects/pawars-residence/pawars-residence-1.jpg",
     "images": [
-      "/image/sample/spacejoy-9M66C_w_ToM-unsplash.jpg",
-      "/image/sample/spacejoy-YI2YkyaREHk-unsplash.jpg",
-      "/image/sample/spacejoy-umAXneH4GhA-unsplash.jpg",
-      "/image/sample/spacejoy-XpbtQfr9Skg-unsplash.jpg",
-      "/image/sample/spacejoy-PyeXkOVmG1Y-unsplash.jpg",
-      "/image/sample/spacejoy-RUvW1KGD9a4-unsplash.jpg"
-    ],
-    "features": [
-      {
-        "title": "Comfortable Seating",
-        "description": "Plush sofas and ergonomic chairs designed for maximum comfort during long family gatherings."
-      },
-      {
-        "title": "Ambient Lighting",
-        "description": "Strategically placed lighting fixtures that create a warm and inviting atmosphere throughout the day."
-      },
-      {
-        "title": "Storage Solutions",
-        "description": "Hidden storage compartments that maintain the clean aesthetic while providing practical functionality."
-      },
-      {
-        "title": "Natural Elements",
-        "description": "Integration of plants and natural materials to bring life and texture to the space."
-      }
+      "/projects/pawars-residence/pawars-residence-1.jpg",
+      "/projects/pawars-residence/pawars-residence-2.jpg",
+      "/projects/pawars-residence/pawars-residence-3.jpg",
+      "/projects/pawars-residence/pawars-residence-4.jpg",
+      "/projects/pawars-residence/pawars-residence-5.jpg",
+      "/projects/pawars-residence/pawars-residence-6.jpg",
+      "/projects/pawars-residence/pawars-residence-7.jpg",
+      "/projects/pawars-residence/pawars-residence-8.jpg",
+      "/projects/pawars-residence/pawars-residence-9.jpg",
+      "/projects/pawars-residence/pawars-residence-10.jpg",
+      "/projects/pawars-residence/pawars-residence-11.jpg",
+      "/projects/pawars-residence/pawars-residence-12.jpg",
+      "/projects/pawars-residence/pawars-residence-13.jpg",
+      "/projects/pawars-residence/pawars-residence-14.jpg",
+      "/projects/pawars-residence/pawars-residence-15.jpg",
+      "/projects/pawars-residence/pawars-residence-16.jpg",
+      "/projects/pawars-residence/pawars-residence-17.jpg",
+      "/projects/pawars-residence/pawars-residence-18.jpg",
+      "/projects/pawars-residence/pawars-residence-19.jpg",
+      "/projects/pawars-residence/pawars-residence-20.jpg",
+      "/projects/pawars-residence/pawars-residence-21.jpg",
+      "/projects/pawars-residence/pawars-residence-22.jpg",
+      "/projects/pawars-residence/pawars-residence-23.jpg"
     ],
     "details": [
       {
-        "title": "Design Concept",
-        "description": "The design concept revolves around creating a space that feels both luxurious and comfortable. We used a neutral color palette with strategic pops of color to add visual interest without overwhelming the space."
-      },
-      {
-        "title": "Materials Used",
-        "description": "We selected high-quality materials that are both beautiful and durable. The hardwood flooring, natural stone accents, and premium fabrics ensure that the space will remain stunning for years to come."
-      },
-      {
-        "title": "Space Planning",
-        "description": "The layout was carefully planned to optimize flow and functionality. Each piece of furniture was selected and positioned to create conversation areas while maintaining open pathways."
-      },
-      {
-        "title": "Lighting Design",
-        "description": "Multiple layers of lighting were incorporated, including ambient, task, and accent lighting. This allows the homeowners to adjust the atmosphere based on the time of day and activity."
+        "title": "Project Overview",
+        "description": "The design seamlessly integrates modern elements with practical functionality, ensuring that every corner of the residence is both aesthetically pleasing and highly usable. Clean lines, contemporary furnishings, and carefully selected materials come together to create a harmonious living space that is both stylish and comfortable. Special attention has been given to the layout, optimizing natural light and enhancing the flow between spaces."
       }
-    ],
-    "testimonial": {
-      "quote": "Our new drawing room has become the heart of our home. It's beautiful, comfortable, and perfectly suited to our lifestyle.",
-      "author": "Sarah Johnson",
-      "position": "Homeowner"
-    }
+    ]
   },
   {
-    "id": "2",
-    "name": "Contemporary Kitchen",
-    "slug": "contemporary-kitchen",
-    "tagline": "A clean and modern culinary space",
-    "description": "This contemporary kitchen combines functionality with sleek design, creating an efficient and visually stunning space for cooking and entertaining. The minimalist approach emphasizes clean lines, smart storage solutions, and high-quality materials.",
-    "client": "Smith Residence",
-    "location": "Chicago, IL",
-    "completionDate": "March 2023",
-    "duration": "2 months",
-    "mainImage": "/image/sample/roberto-nickson-tleCJiDOri0-unsplash.jpg",
-    "images": [
-      "/image/sample/roberto-nickson-tleCJiDOri0-unsplash.jpg",
-      "/image/sample/roberto-nickson-bwIqQ5qQhXs-unsplash.jpg",
-      "/image/sample/r-architecture-TRCJ-87Yoh0-unsplash.jpg",
-      "/image/sample/r-architecture-wDDfbanbhl8-unsplash.jpg",
-      "/image/sample/beazy-60SnthS09Ao-unsplash.jpg",
-      "/image/sample/beazy-aX1TTOuq83M-unsplash.jpg"
-    ],
-    "features": [
-      {
-        "title": "Custom Cabinetry",
-        "description": "Handcrafted cabinets with soft-close mechanisms and specialized storage compartments for maximum efficiency."
-      },
-      {
-        "title": "Premium Appliances",
-        "description": "State-of-the-art appliances that combine performance with energy efficiency and seamless integration."
-      },
-      {
-        "title": "Island Centerpiece",
-        "description": "Multi-functional island that serves as a prep area, dining space, and social hub with hidden storage."
-      },
-      {
-        "title": "Innovative Lighting",
-        "description": "Layered lighting system with under-cabinet LEDs, pendant fixtures, and recessed lighting for different moods and tasks."
-      }
-    ],
+    "id": "markhedes-residence",
+    "name": "Markhede's Residence",
+    "slug": "markhedes-residence",
+    "tagline": "Markhede\u2019s Residence is a thoughtfully designed 1BHK apartment nestled in the quiet lanes of Sutala,...",
+    "description": "Markhede\u2019s Residence is a thoughtfully designed 1BHK apartment nestled in the quiet lanes of Sutala, Khamgaon. With a tight budget and compact layout, the focus of this project was to deliver comfort, style, and functionality without compromising on aesthetics.",
+    "mainImage": "/image/sample/spacejoy-RUvW1KGD9a4-unsplash.jpg",
+    "images": [],
     "details": [
       {
-        "title": "Design Approach",
-        "description": "Our approach focused on creating a kitchen that feels spacious and uncluttered while providing all the functionality needed for serious cooking and entertaining."
-      },
-      {
-        "title": "Material Selection",
-        "description": "We selected durable, low-maintenance materials including quartz countertops, porcelain tile flooring, and high-quality cabinet finishes that will stand the test of time."
-      },
-      {
-        "title": "Workflow Optimization",
-        "description": "The kitchen layout follows the classic work triangle principle, ensuring efficient movement between the refrigerator, sink, and cooking areas."
-      },
-      {
-        "title": "Smart Technology",
-        "description": "Integrated smart home features allow for voice-controlled lighting, appliances, and temperature control, bringing convenience to everyday tasks."
+        "title": "Project Overview",
+        "description": "The design approach embraced minimalism and affordability, integrating modern, modular furniture to maximize space efficiency. Clever storage solutions, subtle textures, and a neutral color palette gave the home a contemporary yet cozy feel. Every element\u2014from furniture to finishes\u2014was curated to offer value-driven design while enhancing livability."
       }
-    ],
-    "testimonial": {
-      "quote": "Our kitchen is now the showpiece of our home. It's not only beautiful but incredibly functional for everything from quick breakfasts to elaborate dinner parties.",
-      "author": "Michael Smith",
-      "position": "Homeowner"
-    }
+    ]
   },
   {
-    "id": "3",
-    "name": "Elegant Living Room",
-    "slug": "elegant-living-room",
-    "tagline": "Perfect space for family gatherings",
-    "description": "This elegant living room design creates a perfect balance between luxury and comfort, ideal for both everyday family use and entertaining guests. The thoughtful layout, premium materials, and attention to detail result in a space that feels both sophisticated and welcoming.",
-    "client": "Williams Family",
-    "location": "Los Angeles, CA",
-    "completionDate": "September 2023",
-    "duration": "4 months",
-    "mainImage": "/image/sample/aaron-huber-G7sE2S4Lab4-unsplash.jpg",
+    "id": "kedia-villa",
+    "name": "Kedia Villa",
+    "slug": "kedia-villa",
+    "tagline": "Exterior Elevation Design for Kedia Villa....",
+    "description": "Exterior Elevation Design for Kedia Villa.",
+    "mainImage": "/projects/kedia-villa/kedia-villa-1.jpg",
     "images": [
-      "/image/sample/aaron-huber-G7sE2S4Lab4-unsplash.jpg",
-      "/image/sample/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg",
-      "/image/sample/jason-wang-8J49mtYWu7E-unsplash.jpg",
-      "/image/sample/toa-heftiba-FV3GConVSss-unsplash.jpg",
-      "/image/sample/spacejoy-kz_xZG9ufbk-unsplash.jpg",
-      "/image/sample/spacejoy-KSfe2Z4REEM-unsplash.jpg"
-    ],
-    "features": [
-      {
-        "title": "Statement Furniture",
-        "description": "Custom-designed furniture pieces that serve as functional art, creating visual interest while providing comfort."
-      },
-      {
-        "title": "Layered Textures",
-        "description": "A rich combination of fabrics, woods, and metals that add depth and tactile interest to the space."
-      },
-      {
-        "title": "Architectural Details",
-        "description": "Enhanced ceiling treatments, custom millwork, and thoughtful trim details that elevate the room's architecture."
-      },
-      {
-        "title": "Curated Accessories",
-        "description": "Carefully selected art pieces, sculptures, and decorative objects that reflect the homeowners' personality and style."
-      }
+      "/projects/kedia-villa/kedia-villa-1.jpg",
+      "/projects/kedia-villa/kedia-villa-2.jpg",
+      "/projects/kedia-villa/kedia-villa-3.jpg",
+      "/projects/kedia-villa/kedia-villa-4.jpg",
+      "/projects/kedia-villa/kedia-villa-5.jpg",
+      "/projects/kedia-villa/kedia-villa-6.jpg",
+      "/projects/kedia-villa/kedia-villa-7.jpg",
+      "/projects/kedia-villa/kedia-villa-8.jpg"
     ],
     "details": [
       {
-        "title": "Design Vision",
-        "description": "The vision for this living room was to create a space that feels timeless yet contemporary, with classic proportions and modern touches that will age gracefully."
-      },
-      {
-        "title": "Color Strategy",
-        "description": "We developed a sophisticated color palette based on warm neutrals with strategic accents of deep blues and burnished metals to create a sense of luxury and depth."
-      },
-      {
-        "title": "Furniture Layout",
-        "description": "The furniture arrangement was designed to facilitate conversation while maintaining clear sight lines to both the fireplace and the outdoor views."
-      },
-      {
-        "title": "Lighting Composition",
-        "description": "A comprehensive lighting plan includes statement fixtures, recessed lighting, and table lamps to create different moods and highlight architectural features and art."
+        "title": "Project Overview",
+        "description": "Modern architectural elevation with clean lines and premium materials."
       }
+    ]
+  },
+  {
+    "id": "singar-sadan",
+    "name": "Singar Sadan",
+    "slug": "singar-sadan",
+    "tagline": "Exterior Elevation Design for Singar Sadan....",
+    "description": "Exterior Elevation Design for Singar Sadan.",
+    "mainImage": "/projects/singar-sadan/singar-sadan-1.jpg",
+    "images": [
+      "/projects/singar-sadan/singar-sadan-1.jpg",
+      "/projects/singar-sadan/singar-sadan-2.jpg",
+      "/projects/singar-sadan/singar-sadan-3.jpg"
     ],
-    "testimonial": {
-      "quote": "The transformation of our living room exceeded all expectations. It's now a space that truly reflects our style while being incredibly comfortable for our family.",
-      "author": "Jennifer Williams",
-      "position": "Homeowner"
-    }
+    "details": [
+      {
+        "title": "Project Overview",
+        "description": "Contemporary house elevation featuring a balance of form and proportion."
+      }
+    ]
   }
 ]

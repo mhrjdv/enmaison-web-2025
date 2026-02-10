@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { TbArrowUp } from "react-icons/tb";
 import "./GoToTop.css";
 

@@ -10,7 +10,7 @@ import {
   TbMailFast,
   TbBook
 } from "react-icons/tb";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const navItems = [
   { name: "HOME", link: "/", icon: TbHome },

@@ -1,16 +1,16 @@
 import projectsData from "@/data/projects.json";
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const project = projectsData.find(p => p.slug === slug);
-  
+
   if (!project) {
     return {
       title: "Project Not Found | Interior Design Portfolio",
       description: "The requested project could not be found."
     };
   }
-  
+
   return {
     title: `${project.name} | Interior Design Portfolio`,
     description: project.description,

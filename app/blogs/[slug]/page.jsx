@@ -1,16 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TbArrowLeft, TbCalendar, TbClock } from "react-icons/tb";
-import blogsData from "@/data/blogs.json";
+import { TbArrowLeft, TbCalendar, TbClock, TbShare, TbUser } from "react-icons/tb";
+import { getBlogs } from "@/lib/data";
+import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  const blogs = getBlogs();
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const blogs = getBlogs();
+  const blog = blogs.find((b) => b.slug === slug);
+
+  if (!blog) return { title: "Blog Not Found" };
+
+  return {
+    title: `${blog.title} | EnMaison Blog`,
+    description: blog.excerpt,
+  };
+}
 
 // Related Posts Component
 function RelatedPosts({ currentBlog, allBlogs }) {
-  // First try to find posts in the same category
   let relatedPosts = allBlogs
     .filter((blog) => blog.category === currentBlog.category && blog.id !== currentBlog.id)
     .slice(0, 3);
 
-  // If we don't have enough posts from the same category, add some random posts
   if (relatedPosts.length < 3) {
     const otherPosts = allBlogs
       .filter((blog) => blog.id !== currentBlog.id && !relatedPosts.some(p => p.id === blog.id))
@@ -20,42 +39,35 @@ function RelatedPosts({ currentBlog, allBlogs }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {relatedPosts.map((blog) => (
         <Link
           key={blog.id}
           href={`/blogs/${blog.slug}`}
-          className="group block overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+          className="group block overflow-hidden rounded-3xl bg-white border border-enmaison-gold/10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
         >
-          <div className="relative h-48 w-full overflow-hidden">
+          <div className="relative h-56 w-full overflow-hidden">
             <Image
               src={blog.image}
               alt={blog.title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-black dark:bg-black/90 dark:text-white">
+            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-black text-enmaison-dark-green uppercase tracking-widest shadow-lg">
               {blog.category}
             </div>
           </div>
-          <div className="p-4">
-            <h3 className="text-lg font-bold text-neutral-900 dark:text-white">{blog.title}</h3>
-            <p className="mt-2 text-sm text-gray-600 line-clamp-2 dark:text-gray-400">
-              {blog.excerpt}
-            </p>
-            <div className="mt-4 flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <div className="relative h-6 w-6 overflow-hidden rounded-full">
-                  <Image
-                    src={blog.authorImage}
-                    alt={blog.author}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-xs text-gray-500 dark:text-gray-400">{blog.readTime}</span>
+          <div className="p-6">
+            <h3 className="text-xl font-bold text-enmaison-dark-green group-hover:text-enmaison-gold transition-colors line-clamp-2 leading-tight mb-4">
+              {blog.title}
+            </h3>
+            <div className="flex items-center justify-between border-t border-enmaison-gold/10 pt-4 mt-auto">
+              <div className="flex items-center gap-2">
+                <TbCalendar className="text-enmaison-gold" />
+                <span className="text-xs font-bold text-enmaison-teal uppercase">{blog.date}</span>
               </div>
+              <span className="text-xs font-black text-enmaison-gold">{blog.readTime}</span>
             </div>
           </div>
         </Link>
@@ -64,72 +76,71 @@ function RelatedPosts({ currentBlog, allBlogs }) {
   );
 }
 
-export default function BlogDetail({ params }) {
-  const { slug } = params;
-  const blog = blogsData.find((b) => b.slug === slug);
+export default async function BlogDetail({ params }) {
+  const { slug } = await params;
+  const blogs = getBlogs();
+  const blog = blogs.find((b) => b.slug === slug);
 
   if (!blog) {
-    return (
-      <div className="container flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Blog Not Found</h1>
-        <p className="mb-8">
-          The blog you&apos;re looking for doesn&apos;t exist or has been removed.
-        </p>
-        <Link
-          href="/blogs"
-          className="flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
-        >
-          <TbArrowLeft className="mr-2" /> Back to Blogs
-        </Link>
-      </div>
-    );
+    notFound();
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-enmaison-cream/20">
       {/* Blog Hero */}
-      <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+      <div className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
         <Image
           src={blog.image}
           alt={blog.title}
           fill
-          className="object-cover"
+          sizes="100vw"
+          className="object-cover scale-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container pb-16 md:pb-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-enmaison-dark-green/40 via-enmaison-dark-green/60 to-enmaison-dark-green/90" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container max-w-4xl px-4 text-center">
             <Link
               href="/blogs"
-              className="inline-flex items-center text-white mb-6 hover:underline"
+              className="inline-flex items-center gap-2 text-white/80 mb-8 hover:text-enmaison-gold transition-colors font-bold uppercase tracking-[0.2em] text-sm"
             >
-              <TbArrowLeft className="mr-2" /> Back to Blogs
+              <TbArrowLeft /> Return to Journal
             </Link>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              {blog.title}
-            </h1>
-            <div className="flex flex-wrap items-center gap-4 text-white/80">
-              <div className="flex items-center">
-                <div className="relative h-10 w-10 overflow-hidden rounded-full mr-2">
-                  <Image
-                    src={blog.authorImage}
-                    alt={blog.author}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <span>{blog.author}</span>
-              </div>
-              <div className="flex items-center">
-                <TbCalendar className="mr-1" />
-                <span>{blog.date}</span>
-              </div>
-              <div className="flex items-center">
-                <TbClock className="mr-1" />
-                <span>{blog.readTime}</span>
-              </div>
-              <div className="px-3 py-1 bg-white/20 rounded-full text-sm">
+
+            <div className="space-y-6">
+              <span className="inline-block px-5 py-2 rounded-full bg-enmaison-gold text-enmaison-dark-green text-xs font-black uppercase tracking-widest shadow-2xl">
                 {blog.category}
+              </span>
+              <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1]">
+                {blog.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center justify-center gap-8 text-white/90 pt-8 border-t border-white/10 mt-12">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-enmaison-gold">
+                    <Image src={blog.authorImage} alt={blog.author} fill sizes="48px" className="object-cover" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-enmaison-gold">Curated By</p>
+                    <p className="text-sm font-bold uppercase">{blog.author}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 text-left">
+                  <TbCalendar className="text-enmaison-gold text-2xl" />
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-enmaison-gold">Journal Date</p>
+                    <p className="text-sm font-bold uppercase">{blog.date}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 text-left">
+                  <TbClock className="text-enmaison-gold text-2xl" />
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-enmaison-gold">Read Time</p>
+                    <p className="text-sm font-bold uppercase">{blog.readTime}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -137,72 +148,56 @@ export default function BlogDetail({ params }) {
       </div>
 
       {/* Blog Content */}
-      <div className="container py-16">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xl mb-8 font-medium text-gray-700 dark:text-gray-300">
-            {blog.excerpt}
-          </p>
-          <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p>{blog.content}</p>
+      <div className="container py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl border border-enmaison-gold/10 -mt-32 relative z-20">
+            <div className="flex justify-end mb-8">
+              <button className="flex items-center gap-2 text-enmaison-teal hover:text-enmaison-gold transition-colors font-bold text-sm uppercase tracking-widest">
+                <TbShare size={20} /> Share Article
+              </button>
+            </div>
 
-            {/* Placeholder for more content */}
-            <p className="mt-8">
-              Interior design is not just about aesthetics; it&apos;s about creating spaces that reflect
-              your personality, enhance your lifestyle, and improve your well-being. Whether you&apos;re
-              renovating your entire home or just refreshing a single room, thoughtful design choices
-              can transform your space into something truly special.
+            <p className="text-2xl md:text-3xl font-bold text-enmaison-dark-green leading-snug mb-12 border-l-8 border-enmaison-gold pl-8 italic">
+              {blog.excerpt}
             </p>
-            <p className="mt-4">
-              Remember that the best interior designs are those that evolve over time, incorporating
-              new ideas while maintaining a cohesive vision. Don&apos;t be afraid to experiment, mix styles,
-              and make your space uniquely yours.
-            </p>
+
+            <div className="prose prose-xl max-w-none text-enmaison-dark-green/90 leading-relaxed font-medium space-y-8">
+              {blog.content.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+
+            <div className="mt-20 pt-12 border-t-2 border-enmaison-gold/20 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex items-center gap-4">
+                <div className="h-16 w-16 bg-enmaison-gold/10 rounded-2xl flex items-center justify-center text-enmaison-gold">
+                  <TbUser size={32} />
+                </div>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-widest text-enmaison-teal">About the Author</p>
+                  <p className="text-xl font-black text-enmaison-dark-green">{blog.author}</p>
+                </div>
+              </div>
+              <Link href="/about" className="text-enmaison-gold font-black uppercase tracking-widest border-b-2 border-enmaison-gold hover:text-enmaison-teal hover:border-enmaison-teal transition-all">
+                Learn more about our vision
+              </Link>
+            </div>
           </div>
 
           {/* Related Posts */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
-            <RelatedPosts currentBlog={blog} allBlogs={blogsData} />
+          <div className="mt-32">
+            <div className="flex items-end justify-between mb-12">
+              <div>
+                <span className="text-enmaison-gold font-black uppercase tracking-[0.3em] text-sm">More Knowledge</span>
+                <h2 className="text-4xl font-black text-enmaison-dark-green tracking-tighter uppercase mt-2">Related Articles</h2>
+              </div>
+              <Link href="/blogs" className="hidden md:block text-enmaison-teal font-bold uppercase tracking-widest hover:text-enmaison-gold transition-colors">
+                Explore All &rarr;
+              </Link>
+            </div>
+            <RelatedPosts currentBlog={blog} allBlogs={blogs} />
           </div>
         </div>
       </div>
-
-      {/* More from this category */}
-      {blogsData.filter(b => b.category === blog.category).length > 1 && (
-        <div className="bg-gray-50 dark:bg-gray-900 py-16 mt-16">
-          <div className="container">
-            <h2 className="text-3xl font-bold mb-8">More from {blog.category}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {blogsData
-                .filter(b => b.category === blog.category && b.id !== blog.id)
-                .slice(0, 4)
-                .map((categoryBlog) => (
-                  <Link href={`/blogs/${categoryBlog.slug}`} key={categoryBlog.id} className="group">
-                    <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-950">
-                      <div className="relative h-48 w-full overflow-hidden">
-                        <Image
-                          src={categoryBlog.image}
-                          alt={categoryBlog.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="text-lg font-bold text-neutral-900 dark:text-white line-clamp-1">
-                          {categoryBlog.title}
-                        </h3>
-                        <div className="mt-2 flex items-center justify-between">
-                          <span className="text-xs text-gray-500 dark:text-gray-400">{categoryBlog.date}</span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">{categoryBlog.readTime}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

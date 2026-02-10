@@ -1,16 +1,22 @@
 "use client";
 import React, { memo } from "react";
 
-export const AuroraText = memo(({
+interface AuroraTextProps {
+  children: React.ReactNode;
+  className?: string;
+  colors?: string[];
+  speed?: number;
+}
+
+export const AuroraText = memo < AuroraTextProps > (({
   children,
   className = "",
   colors = ["#FF0080", "#7928CA", "#0070F3", "#38bdf8"],
   speed = 1
 }) => {
   const gradientStyle = {
-    backgroundImage: `linear-gradient(135deg, ${colors.join(", ")}, ${
-      colors[0]
-    })`,
+    backgroundImage: `linear-gradient(135deg, ${colors.join(", ")}, ${colors[0]
+      })`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     animationDuration: `${10 / speed}s`,

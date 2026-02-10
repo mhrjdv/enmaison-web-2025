@@ -1,16 +1,16 @@
 import blogsData from "@/data/blogs.json";
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const blog = blogsData.find(b => b.slug === slug);
-  
+
   if (!blog) {
     return {
       title: "Blog Not Found | Interior Design Portfolio",
       description: "The requested blog could not be found."
     };
   }
-  
+
   return {
     title: `${blog.title} | Interior Design Portfolio`,
     description: blog.excerpt,

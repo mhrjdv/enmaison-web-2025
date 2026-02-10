@@ -1,0 +1,53 @@
+{
+    "hero": {
+        "title": "Designing Spaces That Tell Your Story",
+        "description": "At EnMaison Designs, we believe great design doesn’t just look beautiful—it feels like home. From concept to completion, we blend functionality with emotion, creativity with clarity, and structure with soul."
+    },
+    "about": {
+        "title": "Your Vision, Our Canvas",
+        "content": "Founded by Ar. Khushboo Gohel, EnMaison Designs is a boutique design studio rooted in precision, passion, and personality. With a deep understanding of space, light, materials, and human behaviour, we create meaningful environments—residential or commercial—that are tailored, timeless, and transformative. Our approach is collaborative and holistic, ensuring every project is both functional and emotionally resonant.",
+        "philosophy": {
+            "title": "Our Design Philosophy",
+            "description": "We believe every project is a canvas, and every client brings a unique story. Whether it’s a compact city apartment, a sprawling residence, or a retail space, we design with empathy and precision—balancing beauty, functionality, and emotional resonance.",
+            "points": [
+                "Minimalism with warmth",
+                "Form with purpose",
+                "Tradition with innovation"
+            ]
+        },
+        "founder": {
+            "name": "Ar. Khushboo Gohel",
+            "designation": "Founder & Principal Architect",
+            "bio": "A graduate in Architecture with diverse experience across leading firms in Mumbai, Khushboo brings a rich perspective shaped by on-ground practice, interior finesse, and a deep respect for client vision. She founded EnMaison Designs to bridge creativity with intention, offering designs that are not only elegant but also deeply personal."
+        },
+        "whyEnMaison": "Derived from the French word for “in the house,” EnMaison symbolizes our commitment to creating designs that feel intimate, authentic, and truly lived-in."
+    },
+    "services": [
+        {
+            "id": "architectural-design",
+            "title": "Architectural Design",
+            "description": "We approach each building as a living sculpture—responsive to its surroundings, yet expressive of the people inside. Our architectural solutions combine innovation with practicality; all grounded in contextual storytelling."
+        },
+        {
+            "id": "interior-design",
+            "title": "Interior Design",
+            "description": "From curated colour palettes to custom furniture layouts, we shape interiors that are immersive and inviting. Our design language speaks of sophistication, functionality, and harmony."
+        },
+        {
+            "id": "3d-visualization",
+            "title": "3D Visualization",
+            "description": "See your ideas come to life—before a single brick is laid. Our photorealistic renders help you visualize the final outcome with clarity and confidence, down to the last detail."
+        },
+        {
+            "id": "vastu-consultation",
+            "title": "Vastu Consultation",
+            "description": "We seamlessly integrate traditional Vastu principles into modern design, aligning your space with the natural elements to enhance well-being, harmony, and positive energy flow."
+        }
+    ],
+    "contact": {
+        "address": "Behind Shubham Ladies Tailors, Vasant Wadi, Main Road, Khamgaon - 444303",
+        "phone": "8766749302",
+        "instagram": "@enmaisondesigns",
+        "email": "info@enmaisondesigns.com"
+    }
+}

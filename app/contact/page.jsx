@@ -1,19 +1,23 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { TbMail, TbPhone, TbMapPin, TbClock, TbArrowUpRight } from "react-icons/tb";
+import { TbMail, TbPhone, TbMapPin, TbArrowUpRight, TbBrandInstagram, TbSend, TbClock } from "react-icons/tb";
+import { getSiteContent } from "@/lib/data";
+import ContactStrip from "@/components/ContactStrip";
 
 export default function Contact() {
+  const content = getSiteContent();
+  const { contact } = content;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    company: "",
     projectType: "",
     message: ""
   });
@@ -35,274 +39,224 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Handle form submission here
   };
 
-  const contactInfo = [
-    {
-      icon: TbPhone,
-      title: "Phone",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
-      color: "bg-blue-50 text-blue-600"
-    },
-    {
-      icon: TbMail,
-      title: "Email",
-      details: ["hello@enmaisondesigns.com", "projects@enmaisondesigns.com"],
-      color: "bg-green-50 text-green-600"
-    },
-    {
-      icon: TbMapPin,
-      title: "Address",
-      details: ["123 Design District", "Architecture Avenue, CA 90210"],
-      color: "bg-purple-50 text-purple-600"
-    },
-    {
-      icon: TbClock,
-      title: "Hours",
-      details: ["Mon-Fri: 9:00 AM - 6:00 PM", "Sat: 10:00 AM - 4:00 PM"],
-      color: "bg-orange-50 text-orange-600"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-enmaison-cream">
-      <div className="container pt-24 md:pt-28 lg:pt-32 pb-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-enmaison-dark-green mb-4">
-            Let&apos;s Bring Your Vision to
-            <span className="text-enmaison-gold block">Life</span>
+    <div className="min-h-screen bg-enmaison-cream/20">
+      {/* Hero Section */}
+      <div className="relative h-[70vh] flex items-center overflow-hidden bg-enmaison-dark-green">
+        <div className="absolute inset-0 opacity-20">
+          <Image
+            src="/projects/pawars-residence/pawars-residence-3.jpg"
+            alt="Contact Background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-enmaison-dark-green/70 via-enmaison-dark-green/50 to-enmaison-dark-green" />
+        <div className="container relative z-10 text-center space-y-6">
+          <span className="text-enmaison-gold font-black uppercase tracking-[0.5em] text-sm">
+            Get in Touch
+          </span>
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-none uppercase">
+            Start Your <br />
+            <span className="text-enmaison-gold">Legacy</span>
           </h1>
-          <p className="text-xl text-enmaison-dark-green/80 max-w-2xl mx-auto">
-            Ready to transform your space? Get in touch and let&apos;s create something beautiful together.
+          <p className="text-lg text-white/70 max-w-xl mx-auto font-medium italic">
+            Every great space begins with a conversation. Tell us about your vision.
           </p>
         </div>
+      </div>
 
-        {/* Form and Contact Info - Aligned */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
-          {/* Contact Form */}
-          <Card className="bg-white/90 backdrop-blur-sm border-2 border-enmaison-gold/30 shadow-xl flex flex-col">
-            <CardHeader className="pb-6">
-              <CardTitle className="text-2xl text-enmaison-dark-green">Start Your Project</CardTitle>
-              <CardDescription className="text-enmaison-dark-green/70">
-                Fill out the form below and we&apos;ll get back to you within 24 hours.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <form onSubmit={handleSubmit} className="space-y-6 h-full flex flex-col">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <ContactStrip contact={contact} />
+
+      {/* Main Content */}
+      <div className="container py-16 lg:py-24">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+          {/* Form Section */}
+          <div className="lg:col-span-7">
+            <div className="bg-white rounded-3xl p-8 md:p-12 lg:p-16 shadow-xl border border-enmaison-gold/10">
+              <div className="mb-10">
+                <h2 className="text-3xl md:text-4xl font-black text-enmaison-dark-green uppercase tracking-tight mb-3">
+                  Inquiry Form
+                </h2>
+                <div className="w-14 h-1.5 bg-enmaison-gold rounded-full mb-5" />
+                <p className="text-enmaison-teal font-medium italic">
+                  Tell us about your dreams for your space. We&apos;re listening.
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-enmaison-dark-green font-medium">
-                      Full Name *
-                    </Label>
+                    <Label className="text-[10px] uppercase tracking-widest text-enmaison-gold font-bold">Your Name</Label>
                     <Input
-                      id="name"
                       name="name"
-                      type="text"
-                      placeholder="Your full name"
+                      placeholder="e.g., John Doe"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white h-11"
+                      className="h-14 rounded-2xl border-enmaison-gold/20 focus:border-enmaison-gold bg-enmaison-cream/10 font-medium"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-enmaison-dark-green font-medium">
-                      Email Address *
-                    </Label>
+                    <Label className="text-[10px] uppercase tracking-widest text-enmaison-gold font-bold">Email Address</Label>
                     <Input
-                      id="email"
                       name="email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="e.g., hello@domain.com"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white h-11"
+                      className="h-14 rounded-2xl border-enmaison-gold/20 focus:border-enmaison-gold bg-enmaison-cream/10 font-medium"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-enmaison-dark-green font-medium">
-                      Phone Number
-                    </Label>
+                    <Label className="text-[10px] uppercase tracking-widest text-enmaison-gold font-bold">Phone Number</Label>
                     <Input
-                      id="phone"
                       name="phone"
-                      type="tel"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="e.g., +91 00000 00000"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white h-11"
+                      className="h-14 rounded-2xl border-enmaison-gold/20 focus:border-enmaison-gold bg-enmaison-cream/10 font-medium"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="company" className="text-enmaison-dark-green font-medium">
-                      Company
-                    </Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      type="text"
-                      placeholder="Your company name"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white h-11"
-                    />
+                    <Label className="text-[10px] uppercase tracking-widest text-enmaison-gold font-bold">Project Category</Label>
+                    <Select onValueChange={handleSelectChange}>
+                      <SelectTrigger className="h-14 rounded-2xl border-enmaison-gold/20 bg-enmaison-cream/10 font-medium">
+                        <SelectValue placeholder="Select Service" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-2xl border-enmaison-gold/20">
+                        <SelectItem value="architecture">Architecture</SelectItem>
+                        <SelectItem value="interiors">Interior Design</SelectItem>
+                        <SelectItem value="consultation">Vastu Consultation</SelectItem>
+                        <SelectItem value="other">3D Visualization</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="projectType" className="text-enmaison-dark-green font-medium">
-                    Project Type *
-                  </Label>
-                  <Select onValueChange={handleSelectChange} required>
-                    <SelectTrigger className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white h-11">
-                      <SelectValue placeholder="Select your project type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="residential">Residential Design</SelectItem>
-                      <SelectItem value="commercial">Commercial Space</SelectItem>
-                      <SelectItem value="renovation">Renovation</SelectItem>
-                      <SelectItem value="consultation">Design Consultation</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2 flex-1">
-                  <Label htmlFor="message" className="text-enmaison-dark-green font-medium">
-                    Project Details *
-                  </Label>
+                  <Label className="text-[10px] uppercase tracking-widest text-enmaison-gold font-bold">Your Vision</Label>
                   <Textarea
-                    id="message"
                     name="message"
-                    placeholder="Tell us about your project, timeline, and budget..."
+                    placeholder="Tell us a bit about your space, location, and requirements..."
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="border-enmaison-gold/50 focus:border-enmaison-gold focus:ring-enmaison-gold/20 bg-white resize-none h-full min-h-[120px]"
+                    className="min-h-[140px] rounded-2xl border-enmaison-gold/20 bg-enmaison-cream/10 p-5 font-medium resize-none"
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full bg-enmaison-gold hover:bg-enmaison-gold/90 text-enmaison-dark-green font-semibold py-3 h-12 transition-all duration-300 shadow-md hover:shadow-lg mt-auto"
-                >
-                  Send Message
-                  <TbArrowUpRight className="ml-2 w-4 h-4" />
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          {/* Contact Information */}
-          <Card className="bg-white/90 backdrop-blur-sm border-2 border-enmaison-gold/30 shadow-xl flex flex-col">
-            <CardHeader className="pb-6">
-              <CardTitle className="text-2xl text-enmaison-dark-green">Get in Touch</CardTitle>
-              <CardDescription className="text-enmaison-dark-green/70">
-                We&apos;re here to help bring your vision to life.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <div className="grid grid-cols-1 gap-4 h-full">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-white to-gray-50/50 border border-gray-200/50 hover:shadow-md transition-all duration-300">
-                    <div className={`p-3 rounded-xl ${item.color}`}>
-                      <item.icon className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-enmaison-dark-green mb-2">
-                        {item.title}
-                      </h3>
-                      {item.details.map((detail, idx) => (
-                        <p key={idx} className="text-enmaison-dark-green/80 text-sm leading-relaxed">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Visit Our Studio - Full Width */}
-        <Card className="bg-white/90 backdrop-blur-sm border-2 border-enmaison-gold/30 shadow-xl mb-16">
-          <CardHeader className="pb-6">
-            <CardTitle className="text-xl text-enmaison-dark-green flex items-center gap-2">
-              <TbMapPin className="w-5 h-5 text-enmaison-gold" />
-              Visit Our Studio
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-64 bg-gradient-to-br from-enmaison-gold/5 via-white to-enmaison-teal/5 rounded-2xl flex items-center justify-center border-2 border-dashed border-enmaison-gold/30 relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0">
-                <div className="absolute top-4 left-4 w-8 h-8 border-2 border-enmaison-gold/20 rounded-full"></div>
-                <div className="absolute top-8 right-8 w-6 h-6 border-2 border-enmaison-teal/20 rotate-45"></div>
-                <div className="absolute bottom-6 left-8 w-4 h-4 bg-enmaison-gold/10 rounded-full"></div>
-                <div className="absolute bottom-8 right-12 w-3 h-3 bg-enmaison-teal/20 rotate-45"></div>
-              </div>
-              
-              <div className="text-center relative z-10">
-                <div className="mb-4 p-4 bg-white/80 rounded-full inline-block shadow-lg">
-                  <TbMapPin className="w-8 h-8 text-enmaison-gold" />
+                <div className="pt-2">
+                  <Button className="w-full h-16 rounded-full bg-enmaison-dark-green text-white font-black uppercase tracking-widest hover:bg-enmaison-gold hover:text-enmaison-dark-green transition-all shadow-xl flex items-center justify-center gap-4 group text-sm">
+                    INITIATE PROJECT <TbSend className="text-xl group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+                  </Button>
                 </div>
-                <h3 className="text-enmaison-dark-green font-semibold text-lg mb-2">Interactive Map</h3>
-                <p className="text-enmaison-dark-green/70 text-sm mb-1">123 Design District</p>
-                <p className="text-enmaison-dark-green/70 text-sm">Architecture Avenue, CA 90210</p>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="mt-4 border-enmaison-gold text-enmaison-dark-green hover:bg-enmaison-gold/10"
-                >
-                  Get Directions
-                  <TbArrowUpRight className="ml-1 w-3 h-3" />
-                </Button>
+              </form>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-5 space-y-8">
+            {/* Studio Address Card */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-enmaison-gold/10">
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/projects/kedia-villa/kedia-villa-1.jpg"
+                  alt="EnMaison Studio"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-enmaison-dark-green/80 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-enmaison-gold mb-1">Our Studio</p>
+                  <p className="text-white font-black text-lg">EnMaison Designs</p>
+                </div>
+              </div>
+              <div className="p-8 space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-xl bg-enmaison-gold/10 flex items-center justify-center text-enmaison-gold shrink-0 mt-0.5">
+                    <TbMapPin className="text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-enmaison-gold mb-1">Address</p>
+                    <p className="text-sm font-bold text-enmaison-dark-green leading-relaxed">{contact.address}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-xl bg-enmaison-teal/10 flex items-center justify-center text-enmaison-teal shrink-0 mt-0.5">
+                    <TbPhone className="text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-enmaison-gold mb-1">Phone</p>
+                    <a href={`tel:${contact.phone}`} className="text-sm font-bold text-enmaison-dark-green hover:text-enmaison-teal transition-colors">{contact.phone}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="h-10 w-10 rounded-xl bg-enmaison-dark-green/10 flex items-center justify-center text-enmaison-dark-green shrink-0 mt-0.5">
+                    <TbMail className="text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-enmaison-gold mb-1">Email</p>
+                    <a href={`mailto:${contact.email}`} className="text-sm font-bold text-enmaison-dark-green hover:text-enmaison-teal transition-colors">{contact.email}</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <Card className="bg-white/90 backdrop-blur-sm border-2 border-enmaison-gold/30 shadow-xl max-w-2xl mx-auto">
-            <CardContent className="pt-8 pb-8">
-              <h2 className="text-3xl font-bold text-enmaison-dark-green mb-4">
-                Ready to Begin?
-              </h2>
-              <p className="text-enmaison-dark-green/80 mb-6 leading-relaxed">
-                Every great space starts with a conversation. Let&apos;s create something remarkable together.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  asChild
-                  className="bg-enmaison-gold hover:bg-enmaison-gold/90 text-enmaison-dark-green font-semibold shadow-md hover:shadow-lg transition-all duration-300 h-12"
-                >
-                  <a href="tel:+15551234567" className="flex items-center gap-2">
-                    <TbPhone className="w-4 h-4" />
-                    Call Now
-                  </a>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  asChild
-                  className="border-enmaison-gold border-2 text-enmaison-dark-green hover:bg-enmaison-gold/10 font-semibold shadow-md hover:shadow-lg transition-all duration-300 h-12"
-                >
-                  <a href="mailto:hello@enmaisondesigns.com" className="flex items-center gap-2">
-                    <TbMail className="w-4 h-4" />
-                    Send Email
-                  </a>
-                </Button>
+            {/* Operating Hours */}
+            <div className="bg-enmaison-dark-green rounded-3xl p-8 text-white shadow-xl overflow-hidden relative">
+              <div className="absolute -top-16 -right-16 w-48 h-48 bg-enmaison-gold/5 rounded-full blur-3xl" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-10 w-10 rounded-xl bg-enmaison-gold/20 flex items-center justify-center text-enmaison-gold">
+                    <TbClock className="text-lg" />
+                  </div>
+                  <h3 className="text-sm font-black uppercase tracking-widest text-enmaison-gold">Operating Hours</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                    <span className="font-medium text-white/60 text-sm">Monday – Friday</span>
+                    <span className="font-black text-sm">10:00 AM – 7:00 PM</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                    <span className="font-medium text-white/60 text-sm">Saturday</span>
+                    <span className="font-black text-sm">10:00 AM – 4:00 PM</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium text-white/60 text-sm">Sunday</span>
+                    <span className="text-enmaison-gold font-black text-sm">By Appointment</span>
+                  </div>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            {/* Social CTA */}
+            <a
+              href="https://instagram.com/enmaisondesigns"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-6 bg-white rounded-3xl p-8 shadow-xl border border-enmaison-gold/10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+            >
+              <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-enmaison-dark-green to-enmaison-teal flex items-center justify-center text-white text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                <TbBrandInstagram />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[9px] font-black uppercase tracking-widest text-enmaison-gold mb-1">Follow Us</p>
+                <p className="text-lg font-black text-enmaison-dark-green truncate">{contact.instagram}</p>
+              </div>
+              <TbArrowUpRight className="text-2xl text-enmaison-gold opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

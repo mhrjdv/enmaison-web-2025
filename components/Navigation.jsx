@@ -5,10 +5,10 @@ import { useState } from "react";
 import { TbArrowUpRight } from "react-icons/tb";
 
 const nav = [
-    { href: '/', label: 'HOME' },
-    { href: '/projects', label: 'PROJECTS' },
-    { href: '/about', label: 'ABOUT US' },
-    { href: '/gallery', label: 'GALLERY' },
+    { href: '/', label: 'Home' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/about', label: 'About' },
+    { href: '/gallery', label: 'Gallery' },
 ]
 
 export default function Navigation() {
@@ -18,7 +18,7 @@ export default function Navigation() {
     return (
         <>
             <button
-                className="flex items-center justify-center w-10 h-10 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 lg:hidden"
+                className="flex items-center justify-center w-10 h-10 rounded-md focus:outline-none lg:hidden"
                 onClick={() => setOpen(!isOpen)}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
             >
@@ -46,7 +46,7 @@ export default function Navigation() {
                     <Link
                         key={href}
                         href={href}
-                        className={`text-gray-700 hover:text-gray-900 font-medium transition-colors py-1 block ${pathname === href ? 'text-black font-semibold' : ''}`}
+                        className={`text-sm transition-colors py-1 block ${pathname === href ? 'text-neutral-900 font-medium' : 'text-neutral-500 hover:text-neutral-900'}`}
                         onClick={() => setOpen(false)}
                     >
                         {label}
@@ -64,20 +64,20 @@ export default function Navigation() {
             {/* Desktop contact button */}
             <Link
                 href="/contact"
-                className="items-center hidden px-5 py-2 font-medium text-white bg-gray-900 border border-gray-900 rounded-full shadow-md lg:inline-flex hover:bg-gray-800 transition-colors duration-300"
+                className="items-center hidden px-5 py-2 text-sm font-medium text-white bg-neutral-900 rounded-full lg:inline-flex hover:bg-neutral-800 transition-colors"
             >
-                Contact Us <TbArrowUpRight className="size-5 ml-2" />
+                Contact Us <TbArrowUpRight className="size-4 ml-1.5" />
             </Link>
 
-            {/* Mobile contact button - shown in the mobile menu */}
+            {/* Mobile contact button */}
             {isOpen && (
-                <div className="mt-6 pt-6 border-t border-gray-100">
+                <div className="mt-6 pt-6 border-t border-neutral-100">
                     <Link
                         href="/contact"
-                        className="flex items-center justify-center w-full px-5 py-2.5 font-medium text-white bg-gray-900 border border-gray-900 rounded-full shadow-md hover:bg-gray-800 transition-colors duration-300"
+                        className="flex items-center justify-center w-full px-5 py-2.5 text-sm font-medium text-white bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors"
                         onClick={() => setOpen(false)}
                     >
-                        Contact Us <TbArrowUpRight className="size-5 ml-2" />
+                        Contact Us <TbArrowUpRight className="size-4 ml-1.5" />
                     </Link>
                 </div>
             )}

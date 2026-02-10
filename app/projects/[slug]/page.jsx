@@ -1,238 +1,198 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { TbArrowLeft, TbArrowUpRight } from "react-icons/tb";
+import { TbArrowLeft, TbArrowUpRight, TbMapPin, TbCalendar, TbClock } from "react-icons/tb";
 import { Carousel } from "@/components/ui/carousel";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
-import projectsData from "@/data/projects.json";
+import { getProjects } from "@/lib/data";
+import { notFound } from "next/navigation";
 
-export default function ProjectDetail() {
-  const params = useParams();
-  const { slug } = params;
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
+export async function generateStaticParams() {
+  const projects = getProjects();
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
-  useEffect(() => {
-    // Find the project with the matching slug
-    const foundProject = projectsData.find((p) => p.slug === slug);
-    if (foundProject) {
-      console.log("Found project:", foundProject);
-      console.log("Project images:", foundProject.images);
-      setProject(foundProject);
-    } else {
-      console.error("Project not found for slug:", slug);
-    }
-    setLoading(false);
-  }, [slug]);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const projects = getProjects();
+  const project = projects.find((p) => p.slug === slug);
 
-  if (loading) {
-    return (
-      <div className="container flex items-center justify-center min-h-screen">
-        <div className="text-2xl">Loading project details...</div>
-      </div>
-    );
-  }
+  if (!project) return { title: "Project Not Found" };
+
+  return {
+    title: `${project.name} | EnMaison Designs`,
+    description: project.description,
+  };
+}
+
+export default async function ProjectDetail({ params }) {
+  const { slug } = await params;
+  const projects = getProjects();
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
-    return (
-      <div className="container flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
-        <p className="mb-8">
-          The project you&apos;re looking for doesn&apos;t exist or has been removed.
-        </p>
-        <Link
-          href="/projects"
-          className="flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
-        >
-          <TbArrowLeft className="mr-2" /> Back to Projects
-        </Link>
-      </div>
-    );
+    notFound();
   }
 
-  // Prepare data for the components
-  const featuresItems = project.features.map((feature) => ({
-    title: feature.title,
-    description: feature.description,
-  }));
-
-
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-enmaison-cream/30">
       {/* Hero Section */}
-      <div className="relative h-[70vh] md:h-screen">
-        <div className="absolute inset-0 bg-black">
+      <div className="relative h-[80vh] w-full overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <Image
             src={project.mainImage}
             alt={project.name}
             fill
-            className="object-cover opacity-70"
+            sizes="100vw"
+            className="object-cover"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-enmaison-dark-green/60 via-enmaison-dark-green/30 to-enmaison-dark-green/80" />
         </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-white text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            {project.name}
-          </h1>
-          <p className="text-xl md:text-2xl max-w-3xl">{project.tagline}</p>
-        </div>
-      </div>
 
-      {/* Project Overview */}
-      <div className="container py-16">
-        <div className="flex flex-col md:flex-row gap-12">
-          <div className="md:w-2/3">
-            <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
-            <p className="text-lg mb-8">{project.description}</p>
+        <div className="container relative z-10 h-full flex flex-col items-center justify-center text-white text-center">
+          <Link href="/projects" className="absolute top-8 left-8 flex items-center gap-2 text-white/80 hover:text-enmaison-gold transition-colors font-bold uppercase tracking-widest text-sm">
+            <TbArrowLeft /> Back to Works
+          </Link>
 
-            {/* Client Testimonial */}
-            {project.testimonial && (
-              <div className="bg-gray-100 p-8 rounded-xl my-8">
-                <p className="text-xl italic mb-4">
-                  &ldquo;{project.testimonial.quote}&rdquo;
-                </p>
-                <div className="flex items-center">
-                  <div>
-                    <p className="font-semibold">
-                      {project.testimonial.author}
-                    </p>
-                    <p className="text-gray-600">
-                      {project.testimonial.position}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
+          <div className="space-y-6 max-w-4xl px-4">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-enmaison-gold text-enmaison-dark-green text-xs font-black uppercase tracking-[0.2em] shadow-lg">
+              Featured Project
+            </span>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-none">
+              {project.name}
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto italic border-l-4 border-enmaison-gold pl-6">
+              {project.tagline}
+            </p>
           </div>
 
-          <div className="md:w-1/3 bg-gray-50 p-8 rounded-xl">
-            <h3 className="text-xl font-bold mb-4">Project Details</h3>
-            <div className="space-y-4">
-              <div>
-                <p className="text-gray-600">Client</p>
-                <p className="font-medium">{project.client}</p>
-              </div>
-              <div>
-                <p className="text-gray-600">Location</p>
-                <p className="font-medium">{project.location}</p>
-              </div>
-              <div>
-                <p className="text-gray-600">Completion Date</p>
-                <p className="font-medium">{project.completionDate}</p>
-              </div>
-              <div>
-                <p className="text-gray-600">Project Duration</p>
-                <p className="font-medium">{project.duration}</p>
-              </div>
+          <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-8 md:gap-16 px-4 py-8 bg-black/20 backdrop-blur-md border-y border-white/10">
+            <div className="flex flex-col items-center gap-1">
+              <TbMapPin className="text-enmaison-gold text-2xl" />
+              <span className="text-xs uppercase tracking-widest text-white/60 font-bold">Location</span>
+              <span className="text-sm font-bold">{project.location || "Khamgaon"}</span>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <TbCalendar className="text-enmaison-gold text-2xl" />
+              <span className="text-xs uppercase tracking-widest text-white/60 font-bold">Completed</span>
+              <span className="text-sm font-bold">{project.completionDate || "2024"}</span>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <TbClock className="text-enmaison-gold text-2xl" />
+              <span className="text-xs uppercase tracking-widest text-white/60 font-bold">Category</span>
+              <span className="text-sm font-bold">{project.slug.includes('elevation') ? 'Architecture' : 'Interior'}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Project Images Carousel */}
-      <div className="py-8 bg-gray-50">
-        <div className="container max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-3">
-            <h2 className="text-2xl font-bold">Project Gallery</h2>
-            <p className="text-gray-500 text-sm mt-1 md:mt-0">
-              Swipe or use arrows to navigate
-            </p>
-          </div>
-          <div className="relative overflow-hidden rounded-xl shadow-2xl carousel-container">
-            <Carousel
-              key={`carousel-${project.id}`}
-              images={project.images || []}
-              className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]"
-              autoplay={true}
-              interval={4000}
-            />
-          </div>
-          <div className="grid grid-cols-4 gap-1 sm:gap-2 mt-3">
-            {project.images && project.images.length > 0 ? (
-              project.images.slice(0, 4).map((image, index) => (
-                <div
-                  key={index}
-                  className="relative aspect-[4/3] h-14 sm:h-16 cursor-pointer overflow-hidden rounded-md shadow-sm hover:shadow-md transition-all duration-300"
-                  onClick={() =>
-                    document
-                      .querySelector(".carousel-container")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  <Image
-                    src={image}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    onError={(e) => {
-                      console.error(`Failed to load thumbnail: ${image}`);
-                      e.currentTarget.src = "/image/placeholder.jpg";
-                    }}
+      {/* Project content */}
+      <div className="container py-24">
+        <div className="grid lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-8 space-y-12">
+            <section>
+              <h2 className="text-4xl font-black text-enmaison-dark-green mb-8 flex items-center gap-4">
+                <span className="w-12 h-1.5 bg-enmaison-gold rounded-full" />
+                The Vision
+              </h2>
+              <p className="text-xl text-enmaison-teal leading-relaxed font-medium">
+                {project.description}
+              </p>
+            </section>
+
+            {project.images && project.images.length > 0 && (
+              <section className="space-y-8">
+                <div className="flex items-end justify-between border-b-2 border-enmaison-gold/20 pb-4">
+                  <h2 className="text-3xl font-black text-enmaison-dark-green uppercase tracking-tight">Gallery Showcase</h2>
+                  <p className="text-enmaison-teal font-bold text-sm tracking-widest">{project.images.length} HIGH-RES RENDERS</p>
+                </div>
+                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+                  <Carousel
+                    images={project.images}
+                    className="h-[400px] md:h-[600px]"
+                    autoplay={true}
                   />
                 </div>
-              ))
-            ) : (
-              <div className="col-span-4 text-center py-4 bg-gray-100 rounded-lg">
-                <p className="text-gray-500">No thumbnail images available</p>
-              </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                  {project.images.slice(0, 8).map((image, idx) => (
+                    <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden group border border-enmaison-gold/10">
+                      <Image
+                        src={image}
+                        alt={`${project.name} detail ${idx + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
             )}
-          </div>
-        </div>
-      </div>
 
-      {/* Features Section */}
-      <div className="bg-gray-50 py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold mb-8">Key Features</h2>
-          <HoverEffect items={featuresItems} />
-        </div>
-      </div>
-
-      {/* Project Details Section */}
-      <div className="py-16">
-        <div className="container mb-8">
-          <h2 className="text-3xl font-bold">Design Process</h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {project.details.map((detail, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-semibold mb-4">{detail.title}</h3>
-                <p className="text-gray-600">{detail.description}</p>
+            <section className="bg-white rounded-[2.5rem] p-10 shadow-xl border border-enmaison-gold/20">
+              <h2 className="text-3xl font-black text-enmaison-dark-green mb-8 uppercase tracking-tight">Design & Thinking</h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {project.details.map((detail, index) => (
+                  <div key={index} className="space-y-3">
+                    <h3 className="text-xl font-bold text-enmaison-gold flex items-center gap-3">
+                      <span className="text-2xl font-black opacity-20">0{index + 1}</span>
+                      {detail.title}
+                    </h3>
+                    <p className="text-enmaison-dark-green/80 font-medium leading-relaxed italic">
+                      {detail.description}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </section>
           </div>
+
+          <aside className="lg:col-span-4 space-y-12">
+            <div className="bg-enmaison-dark-green rounded-[2.5rem] p-10 text-white shadow-2xl sticky top-24">
+              <h3 className="text-2xl font-black mb-8 border-b border-white/10 pb-4 tracking-tight uppercase">About Project</h3>
+              <div className="space-y-8">
+                <div className="space-y-1">
+                  <p className="text-xs font-bold text-enmaison-gold tracking-[0.2em] uppercase">Firm</p>
+                  <p className="text-lg font-bold">EnMaison Designs</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs font-bold text-enmaison-gold tracking-[0.2em] uppercase">Principal Architect</p>
+                  <p className="text-lg font-bold">Ar. Khushboo Gohel</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs font-bold text-enmaison-gold tracking-[0.2em] uppercase">Project Location</p>
+                  <p className="text-lg font-bold">{project.location || "Khamgaon, Maharashtra"}</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs font-bold text-enmaison-gold tracking-[0.2em] uppercase">Service Provided</p>
+                  <p className="text-lg font-bold">Architecture & Interiors</p>
+                </div>
+              </div>
+
+              <div className="mt-12">
+                <Link href="/contact" className="group flex items-center justify-between w-full bg-enmaison-gold text-enmaison-dark-green px-8 py-5 rounded-2xl font-black transition-all hover:bg-white">
+                  ENQUIRE NOW
+                  <TbArrowUpRight className="text-2xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="bg-black text-white py-16">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to transform your space?
-          </h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Let&apos;s create a design that perfectly suits your lifestyle and
-            preferences.
+      {/* Footer CTA */}
+      <div className="bg-enmaison-cream py-24 text-center">
+        <div className="container max-w-4xl mx-auto px-4">
+          <h2 className="text-4xl md:text-6xl font-black text-enmaison-dark-green mb-8 tracking-tighter">Inspired by {project.name}?</h2>
+          <p className="text-xl text-enmaison-teal font-medium mb-12 italic">
+            Every space has a story waiting to be told. Let us help you craft yours with precision and soul.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Contact Us <TbArrowUpRight className="ml-2" />
+          <Link href="/projects" className="inline-flex items-center gap-4 text-enmaison-gold font-black text-lg py-4 px-10 rounded-full border-2 border-enmaison-gold hover:bg-enmaison-gold hover:text-white transition-all shadow-xl">
+            VIEW MORE PROJECTS <TbArrowUpRight />
           </Link>
         </div>
-      </div>
-
-      {/* Back to Projects */}
-      <div className="container py-12">
-        <Link
-          href="/projects"
-          className="inline-flex items-center text-lg font-medium hover:underline"
-        >
-          <TbArrowLeft className="mr-2" /> Back to All Projects
-        </Link>
       </div>
     </div>
   );

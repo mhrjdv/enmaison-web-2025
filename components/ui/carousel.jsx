@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import NextImage from "next/image";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
@@ -185,11 +185,10 @@ export const Carousel = ({
               setDirection(index > currentIndex ? "right" : "left");
               setCurrentIndex(index);
             }}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              index === currentIndex
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentIndex
                 ? "bg-white scale-125"
                 : "bg-white/50 hover:bg-white/80"
-            }`}
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

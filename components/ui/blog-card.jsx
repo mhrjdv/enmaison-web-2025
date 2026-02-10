@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BlogCard = ({
@@ -33,6 +33,7 @@ export const BlogCard = ({
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -54,6 +55,7 @@ export const BlogCard = ({
                 src={authorImage}
                 alt={author}
                 fill
+                sizes="32px"
                 className="object-cover"
               />
             </div>

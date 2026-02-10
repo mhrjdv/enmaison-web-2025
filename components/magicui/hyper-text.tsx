@@ -1,11 +1,23 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const DEFAULT_CHARACTER_SET = Object.freeze("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
 
 const getRandomInt = max => Math.floor(Math.random() * max);
+
+interface HyperTextProps {
+  children: string;
+  className?: string;
+  duration?: number;
+  delay?: number;
+  as?: React.ElementType;
+  startOnView?: boolean;
+  animateOnHover?: boolean;
+  characterSet?: string[] | readonly string[];
+  [key: string]: any;
+}
 
 export function HyperText({
   children,
@@ -17,7 +29,7 @@ export function HyperText({
   animateOnHover = true,
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
-}) {
+}: HyperTextProps) {
   const MotionComponent = motion.create(Component, {
     forwardMotionProps: true,
   });
